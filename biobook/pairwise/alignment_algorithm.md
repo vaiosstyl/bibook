@@ -21,7 +21,34 @@ If your alignment is in position $a_i,b_j$ then the next step in the alignment i
 
 The path we follow tells us how the sequences should be aligned. A move diagonally signifies a match or mismatch, indicating that the characters from both sequences should be aligned with each other. Moving up or to the left indicates a gap in one of the sequences.
 
+
+### Examles of alignments
+
+An example of some matrix representations of an alignment is found in [](#fig-matrix-representation).
+
+```{figure} img/matrix_representation.png
+---
+name: fig-matrix-representation
+scale: 50 %
+alt: Matrix representation of three alignments
+---
+Matrix representation of three alignments of `ACGTACT` and `ACTACGT`.
+
+The path of Alignment 1 is given a red color, Alignment 2 a green color, and Alignment 3 a blue color. 
+
+| Alignment 1 (red) | Alignment 2 (green) | Alignment 3 (blue) | 
+| :---------- | :---------- | :---------- |
+| `---ACGTACT`  | `ACGTAC-T`    | `ACGTACT----` |
+| `ACTACGT---`  | `AC-TACGT`    | `----ACTACGT` | 
+
+```
+
 In summary, the matrix representation of alignments and the traceback process are not merely computational techniques; they are integral to understanding the relationships between biological sequences. By breaking down the alignment process into a series of quantifiable steps, matrices allow us to systematically explore the vast space of alignment possibilities, leading us to the optimal alignment that best reflects the evolutionary or functional relationship between the sequences involved.
+
+
+
+
+
 
 Pairwise sequence alignment is a fundamental technique in bioinformatics used to identify regions of similarity between two sequences, which may be indicative of functional, structural, or evolutionary relationships. Among the various methods available for pairwise alignment, the Needleman-Wunsch algorithm is pivotal, designed specifically for global alignment. Here's a brief overview of this influential algorithm:
 

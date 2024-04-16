@@ -37,9 +37,18 @@ In this example, the alignment demonstrates a few key concepts:
 
 - **Insertion and Deletion (Indels):** These occur when a nucleotide (or amino acid) is present in one sequence but not the other, resulting in gaps in the alignment. An insertion in sequence 2 (represented by the gap in sequence 1 after 'A') and a deletion in sequence 1 (indicated by the gap in sequence 2 after 'T') illustrate this concept.
 
-# What is needed to define an optimal pairwise alignment?
+# What is needed to systematicaly construct a pairwise alignment?
 
-- **Scoring function**, $d(x,y)$, giving the score of a column of any letter $x$ and $y$.  The letters could be DNA or RNA bases of amino acids, for know lets think about them as DNA bases. A typical scoring function could be:
+To systematicaly construct a pairwise alignment we need three things.
+
+- A scoring function, i.e. how is each position in the alignment scored.
+- An alignment type, i.e. what type of alignment is to be constructed. 
+- An alignment algorithm, i.e. how do we optimise the score of an alignment to form the desired alignment type
+
+
+## Scoring function
+
+A scoring function, $d(x,y)$, giving the score of a column of any letter $x$ and $y$.  The letters could be DNA or RNA bases of amino acids, for know lets think about them as DNA bases. A typical scoring function could be:
 
 $$  
 d(x,y)= 
@@ -52,13 +61,33 @@ $$
   
 Here, $p$, is called a match score, $n$, a mismatch score, and $g$ a gap penalty.
 
-- **Alignment approach.** If we want to find an optimal alignment of the full length sequences, we are searching a *global* alignment approach. If we search the highest scoring stretch of an alignment, you should use a *local* alignment approach. You can also use a semi-global alignment, searching for an optimal alignment, with the exception for any overshooting sequence terminals.
+We score an alignment by summing up the scoring function over each position in an alignment. This allows us to evaluate if one alignment is better than another.
 
-To expand on the alignment approaches, let's delve deeper into global, local, and semi-global alignments, their definitions, differences, and use cases:
+````{admonition} Example
+:class: Note
 
-## Alignment Approach
+Consider the alignment,
+```
+ACT  
+A-T  
+```
+, using a match score of 2 and a gap penalty of -1. The scoring of this alignment is as follows:
 
-The choice of alignment approach is dictated by the specific objectives of the sequence comparison. Here we explore three primary methods: global, local, and semi-global alignments.
+- The first position has `A` aligned with `A`, which is a match. Assuming a match score of 2, this position contributes +2 to the total score.
+
+- The second position has `C` aligned with a gap (`-`). With a gap penalty of -1, this position subtracts 1 from the total score.
+
+- The third position has `T` aligned with `T`, another match. This contributes +2 to the total score.
+
+Thus, the total score of the alignment `ACT` with `A-T` is calculated as, +2 -1 +2 = 3
+````
+
+
+## Alignment Type
+
+If we want to find an optimal alignment of the full length sequences, we are searching a *global* alignment type. If we search the highest scoring stretch of an alignment, you should use a *local* alignment type. You can also use a semi-global alignment, searching for an optimal alignment, with the exception for any overshooting sequence terminals.
+
+To expand on the alignment types, let's delve deeper into global, local, and semi-global alignments, their definitions, differences, and use cases:
 
 ### Global Alignment
 
@@ -92,5 +121,34 @@ Semi-global alignments are particularly useful when aligning sequences where one
 
 Each alignment approach serves different purposes and is suited to particular scenarios in biological research. By understanding the nuances and applications of each method, researchers can select the most appropriate alignment strategy for their specific needs, whether they are comparing whole genomes, identifying conserved motifs, or annotating genes within longer sequences.
 
+## Alignment Algorithm
 
+Given the scoring function, and alignment type, we have a definition on what we want to archive, i.e. there is a definition of opimality. Now we come to the question of *how* we obtain such optimality.
 
+### Exhausive searches
+
+Lets first consider why this is not as straight forward as you might first think. Given that computers are fast, why dont we just walk through all possible alignments that can be formed by two sequences and then select whatever alignment that is optimal?
+
+Combinatorial explosion refers to the exponential growth in the number of possibilities that need to be considered as the size of the problem increases. In the context of sequence alignment, this means assessing every possible way in which two sequences can be aligned by considering every possible insertion, deletion, and substitution.
+
+For two sequences the number of possible alignments  grows exponentially with the lengths of these sequences. This is due to the fact that each position in the first sequence can be matched with any position in the second sequence or aligned with a gap, and vice versa. If you consider aligning a sequence of just 10 amino acids against another of the same length, the number of potential alignments, considering all possible gaps and matches, is astronomically high. Aligning sequences of 100 characters each could potentially result in evaluating more possibilities than there are atoms in the observable universe. The situation becomes untenably complex as the sequence lengths increase to typical biological lengths of hundreds or thousands of residues.
+
+In conclusion, while exhaustive search methods might conceptually offer a way to ensure the discovery of the optimal alignment, their practical application is limited by the sheer number of combinations they generate. This makes them an impractical choice in the field of bioinformatics, where efficiency and speed are often as critical as accuracy.
+
+### Dynamic programming
+
+Dynamic programming is a powerful computational approach used in bioinformatics to efficiently compute sequence alignments without facing the combinatorial explosions typical of exhaustive searches. This method operates under the principle that the optimal alignment of two sequences can be derived by solving smaller, simpler subproblems. 
+
+Each step in a dynamic programming approach to sequence alignment treats the calculation of an optimal alignment for a given pair of subsequences as independent of previous steps. This independence is key to the method's efficiency:
+
+- **Decomposition**: The problem of aligning two sequences is broken down into aligning smaller subsequences. Each subproblem corresponds to finding the best alignment between prefixes of the original sequences.
+
+- **Table Filling**: A matrix is used where each cell represents an optimal score for aligning the subsequences up to that point. The score in each cell is calculated based solely on its immediate predecessors (top, left, top-left diagonal), independent of how those scores were derived.
+
+- **Pruning**: By filling the matrix systematically, dynamic programming avoids recalculating the alignment for every possible combination of sequence segments. Instead, it builds upon the optimal solutions of smaller subproblems. This significantly reduces the number of combinations that need to be considered.
+
+- **Optimality**: Once the matrix is filled, the optimal alignment can be traced back from the cell representing the entire sequence (for global alignments) or from the highest scoring cell (for local alignments). This ensures that only the most relevant paths through the problem space are considered.
+
+Dynamic programming thus allows bioinformatics algorithms to compute sequence alignments rapidly and efficiently, avoiding the computational infeasibility associated with an exhaustive search. This method ensures that each step is self-contained, using only the necessary data from directly related subproblems, thereby dramatically reducing the computational complexity and resource requirements.
+
+In the next Chapters we will describe a set of such dynamic programming algorithms in detail.

@@ -12,10 +12,18 @@ Aligning sequences involves comparing each character of one sequence with every 
 
 A matrix for sequence alignment is essentially a grid. Each cell in this grid represents a comparison point between a character from one sequence and another from the second sequence. Each cell of the matrix correspond to the characters in the two sequences being aligned. And a path from the first left cell to the bottom right cell of the matrix represent a global alignment.
 
-If your alignment is in position $a_i,b_j$ then the next step in the alignment is either a <span style="color:green">match/mismatch</span> between $a_{i+1},b_{j+1}$ (diagonal movement), a <span style="color:magenta">delete</span> $a_{i+1},-$, (a vertical movement), or an <span style="color:orange">insert</span> $-,b_{j+1}$, (a horizontal movement).
 
+```{figure} ./img/movement.png
+---
+name: fig-movement
+scale: 50 %
+alt: One step of an alignment
+---
+A step in the path representing an alignment.
 
-![](img/movement.png)
+If your alignment is in position $a_i,b_j$ of to sequences $\mathbf{a}=(a_1,\ldots,a_N)$ and $\mathbf{b}=(b_1,\ldots,b_N)$ then the next step in the alignment is either a <span style="color:green">match/mismatch</span> between $a_{i+1},b_{j+1}$ (diagonal movement), a <span style="color:magenta">delete</span> $a_{i+1},-$, (a vertical movement), or an <span style="color:orange">insert</span> $-,b_{j+1}$, (a horizontal movement).
+
+```
 
 ### Alignments as paths between the cells
 
@@ -24,9 +32,9 @@ The path we follow tells us how the sequences should be aligned. A move diagonal
 
 ### Examles of alignments
 
-An example of some matrix representations of an alignment is found in [](#fig-matrix-representation).
+An example of some matrix representations of an alignment is found in {numref}`fig-matrix-representation`.
 
-```{figure} img/matrix_representation.png
+```{figure} ./img/matrix_representation.png
 ---
 name: fig-matrix-representation
 scale: 50 %
@@ -46,34 +54,3 @@ The path of Alignment 1 is given a red color, Alignment 2 a green color, and Ali
 In summary, the matrix representation of alignments and the traceback process are not merely computational techniques; they are integral to understanding the relationships between biological sequences. By breaking down the alignment process into a series of quantifiable steps, matrices allow us to systematically explore the vast space of alignment possibilities, leading us to the optimal alignment that best reflects the evolutionary or functional relationship between the sequences involved.
 
 
-
-
-
-
-Pairwise sequence alignment is a fundamental technique in bioinformatics used to identify regions of similarity between two sequences, which may be indicative of functional, structural, or evolutionary relationships. Among the various methods available for pairwise alignment, the Needleman-Wunsch algorithm is pivotal, designed specifically for global alignment. Here's a brief overview of this influential algorithm:
-
-## Needleman-Wunsch Algorithm: A Cornerstone of Global Alignment
-
-### Background
-
-Developed by Saul B. Needleman and Christian D. Wunsch in 1970, the Needleman-Wunsch algorithm was one of the first computational approaches to sequence alignment. Its introduction marked a significant advancement in bioinformatics, enabling the systematic and automated comparison of biological sequences.
-
-### Principle
-
-The algorithm is based on dynamic programming, a method that breaks down complex problems into simpler, smaller subproblems, solving each just once and storing their solutions. In the context of sequence alignment, it constructs an optimal global alignment by comparing every character of one sequence with every character of another, considering the costs of matches, mismatches, and gaps.
-
-### Process
-
-1. **Initialization:** It starts by creating a scoring matrix where one sequence is aligned along the top and the other along the side. The first row and column are filled with gap penalties, increasing progressively to set up the basis for the algorithm.
-
-2. **Matrix Filling:** Each cell in the matrix is then filled based on the scores of adjacent cells (top, left, and diagonal), plus the score for matching or mismatching the corresponding characters, or introducing a gap. The choice of score at each cell reflects the highest score achievable from the possible alignments up to that point.
-
-3. **Traceback:** Once the matrix is filled, the optimal alignment is determined by tracing back from the bottom-right corner to the top-left, following the path that resulted in the highest score. This path represents the optimal global alignment of the two sequences.
-
-4. **Alignment Output:** The traceback path is used to construct the aligned sequences, introducing gaps as necessary, to maximize the alignment score based on the predefined scoring system.
-
-### Applications and Importance
-
-The Needleman-Wunsch algorithm is fundamental when the goal is to align entire sequences, providing a comprehensive view of their similarity. It's particularly valuable in evolutionary biology for comparing homologous sequences across different species, helping to infer phylogenetic relationships and evolutionary events. Moreover, it lays the foundation for understanding the principles of dynamic programming in bioinformatics, influencing the development of other alignment algorithms and tools.
-
-Despite its computational intensity, especially for long sequences, the Needleman-Wunsch algorithm remains a crucial method for global sequence alignment, embodying the essence of comparing biological sequences in a mathematically rigorous and systematic way.

@@ -36,4 +36,5 @@ sphinx:
   config:
     html_theme_options:
       navigation_with_keys: false
-    numfig: true
+  extra_extensions:
+    - sphinx_subfigure

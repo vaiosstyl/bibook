@@ -8,12 +8,11 @@ Developed by Saul B. Needleman and Christian D. Wunsch in 1970, the Needleman-Wu
 
 The algorithm is based on dynamic programming, a method that breaks down complex problems into simpler, smaller subproblems, solving each just once and storing their solutions. In the context of sequence alignment, it constructs an optimal global alignment by comparing every character of one sequence with every character of another, considering the costs of matches, mismatches, and gaps.
 
-## Process
+## The definitions of the problem, and the solution
 
-Given two sequences $a_1,\ldots,a_N$ and $b_1,\ldots,b_M$, a scoring function $d(x,y)$, we can find an optimal {\em global} alignment by investigating the dynamic programming matrix, $S$, of size $(N+1,M+1)$.
-\begin{columns}
+Given two sequences $a_1,\ldots,a_N$ and $b_1,\ldots,b_M$, a scoring function $d(x,y)$, find a *global* alignment that gives an optimal (maximal) score.
 
-1. **Initialization:** It starts by creating a scoring matrix where one sequence is aligned along the top and the other along the side. The first row and column are filled with gap penalties, increasing progressively to set up the basis for the algorithm.
+The solution can be found by studying the dynamic programming matrix, $S$, of size $(N+1,M+1)$, by using the recursions defined in equations {eq}`nw-init` and {eq}`nw-recursion`.
 
 ```{math}
 :label: nw-init
@@ -25,8 +24,6 @@ S_{0,j} =&  d(-,y) \cdot j\ \textrm{for all}\ j
 \end{align*}
 ```
 
-1. **Matrix Filling:** Each cell in the matrix is then filled based on the scores of adjacent cells (top, left, and diagonal), plus the score for matching or mismatching the corresponding characters, or introducing a gap. The choice of score at each cell reflects the highest score achievable from the possible alignments up to that point. Here we use the recursion,
-
 ```{math}
 :label: nw-recursion
 
@@ -37,6 +34,16 @@ S_{i,j}=\max
    S_{i,j-1} & + d(-,b_j).
 \end{cases}
 ```
+
+We will walk through these steps more carefully below.
+
+
+## Process
+
+
+1. **Initialization:** It starts by creating a scoring matrix where one sequence is aligned along the top and the other along the side. The first row and column are filled with gap penalties, increasing progressively to set up the basis for the algorithm.
+
+1. **Matrix Filling:** Each cell in the matrix is then filled based on the scores of adjacent cells (top, left, and diagonal), plus the score for matching or mismatching the corresponding characters, or introducing a gap. The choice of score at each cell reflects the highest score achievable from the possible alignments up to that point. Here we use the recursion,
 
 1. **Traceback:** Once the matrix is filled, the optimal alignment is determined by tracing back from the bottom-right corner to the top-left, following the path that resulted in the highest score. This path represents the optimal global alignment of the two sequences.
 
@@ -86,7 +93,7 @@ We then recusively fill in the other elements of the matrix in a row wise manner
 Filling in the matrix. We fill in the elements recursively, in a row-wise manner. Each cell's value is evaluated using equation {eq}`nw-recursion`. The values of each recursion is spelled out under each subfigure. We store trackers of which step we used to reach a certain cell, indicated by red arrows. Note that for some cells there are multiple optimal steps, i.e. paths that have the same score.
 :::  
 
-Given the filled in matrix, we can now track the optimal path from the bottom right element of the matrix, following the arrows back to the top-left element, as shown in {numref}`fig-nw-bt`..
+Given the filled in matrix, we can now track the optimal path from the bottom right element of the matrix, following the arrows back to the top-left element, as shown in {numref}`fig-nw-bt`.
 
 ```{figure} ./img/nw_short_bt.png
 :name: fig-nw-bt
@@ -100,8 +107,7 @@ We follow the alignment backwards from the bottom-right corner to the top-left c
 
 Here we align the sequences $a=$TGCATTA $b=$GCATTAC when $\displaystyle d(x,y)= \begin{cases}3 & \textrm{if} x=y\\-2 & \textrm{if} x= \textrm{- or } y=\textrm{-}\\  -1 & \textrm{otherwise } \end{cases}$. 
 
-The resulting matrix is found in {numref}`fig-nw-long`
-
+The resulting matrix is found in {numref}`fig-nw-long`.
 
 ```{figure} ./img/nw_long_bt.png
 :name: fig-nw-long

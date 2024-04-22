@@ -8,3 +8,5 @@ chapters:
 - file: pairwise/alignment_algorithm
 - file: pairwise/needleman
 - file: pairwise/nw_code.ipynb
+- file: pairwise/waterman
+- file: pairwise/sw_code.ipynb

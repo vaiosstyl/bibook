@@ -22,11 +22,15 @@ bibtex_bibfiles:
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 html:
-  home_page_in_navbar : true
+  home_page_in_navbar: true
   use_repository_button: true
   use_issues_button: true
   use_edit_page_button: true
   use_download_button: true
+  url: https://github.com/statisticalbiotechnology/biobook
+  baseurl: https://github.com/statisticalbiotechnology/biobook
+  extra_navbar: Powered by <a href="https://jupyterbook.org">Jupyter Book</a # Will be displayed underneath the left navbar.
+
 
 launch_buttons:
   notebook_interface        : classic  # The interface interactive links will activate ["classic", "jupyterlab"]
@@ -41,8 +45,8 @@ repository:
 
 
 sphinx:
-  config:
-    html_theme_options:
-      navigation_with_keys: false
   extra_extensions:
     - sphinx_subfigure
+#  config:
+#    html_theme_options:
+#      navigation_with_keys: false

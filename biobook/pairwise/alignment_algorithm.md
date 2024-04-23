@@ -1,4 +1,4 @@
-# Algorithms for pairwise alignments
+# Representations of pairwise alignments
 
 Before delving into the intricacies of the alignment algorithms, it's crucial to understand the matrix representation of alignments. This approach is not just a computational convenience but a fundamental framework that encapsulates the complexity of aligning biological sequences. Here's an overview of why matrices are used in sequence alignment and the significance of the traceback process.
 

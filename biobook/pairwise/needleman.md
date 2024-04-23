@@ -17,11 +17,9 @@ The solution can be found by studying the dynamic programming matrix, $S$, of si
 ```{math}
 :label: nw-init
 
-\begin{align*}
- S_{0,0} =& 0, \\
-S_{i,0} =& d(x,-) \cdot i \ \textrm{for all}\ i, \\
-S_{0,j} =&  d(-,y) \cdot j\ \textrm{for all}\ j 
-\end{align*}
+S_{0,0} = 0, \\
+S_{i,0} = d(x,-) \cdot i \ \textrm{for all}\ i, \\
+S_{0,j} =  d(-,y) \cdot j\ \textrm{for all}\ j 
 ```
 
 ```{math}
@@ -47,7 +45,7 @@ We will walk through these steps more carefully below.
 
 1. **Traceback:** Once the matrix is filled, the optimal alignment is determined by tracing back from the bottom-right corner to the top-left, following the path that resulted in the highest score. This path represents the optimal global alignment of the two sequences.
 
-2. **Alignment Output:** The traceback path is used to construct the aligned sequences, introducing gaps as necessary, to maximize the alignment score based on the predefined scoring system. The final score of the alignment is given by the cell $S_{N,M}$.
+2. **Alignment Output:** The traceback path is used to construct the aligned sequences, introducing gaps as necessary, to maximize the alignment score based on the predefined scoring system. The final score of the alignment is given by the element, $S_{N,M}$.
 
 ## Applications and Importance
 
@@ -67,7 +65,7 @@ We start by filling in the borders of the matrix as shown in {numref}`fig-nw-sho
 ```{figure} ./img/nw_short_1.png
 :name: fig-nw-short-1
 :align: left
-:scale: 40%
+:width: 50%
 
 Initialization of the gap penalty matrix for the Needleman-Wunsch algorithm, using using equation {eq}`nw-init`.
 ```
@@ -98,7 +96,7 @@ Given the filled in matrix, we can now track the optimal path from the bottom ri
 ```{figure} ./img/nw_short_bt.png
 :name: fig-nw-bt
 :align: left
-:scale: 40%
+:width: 50%
 
 We follow the alignment backwards from the bottom-right corner to the top-left corner of the matrix, and mark the found optimal path with blue arrows.
 ```
@@ -112,7 +110,7 @@ The resulting matrix is found in {numref}`fig-nw-long`.
 ```{figure} ./img/nw_long_bt.png
 :name: fig-nw-long
 :align: left
-:scale: 50%
+:width: 70%
 
 We follow the alignment backwards from the bottom-right corner to the top-left corner of the matrix, and mark the found optimal path with blue arrows.
 ```

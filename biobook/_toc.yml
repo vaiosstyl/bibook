@@ -16,3 +16,7 @@ parts:
     - file: pairwise/sw_code.ipynb
     - file: pairwise/semi
     - file: pairwise/sg_code.ipynb
+  - caption: Protein Sequence Alignment
+    chapters:
+    - file: pairwise/matrix.ipynb
+    

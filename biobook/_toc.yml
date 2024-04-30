@@ -8,6 +8,7 @@ parts:
     chapters:
     - file: pairwise/alignment_intro
     - file: pairwise/alignment_algorithm
+
   - caption: Algorithms for Pairwise Alignments
     chapters:
     - file: pairwise/needleman
@@ -16,7 +17,13 @@ parts:
     - file: pairwise/sw_code.ipynb
     - file: pairwise/semi
     - file: pairwise/sg_code.ipynb
+
   - caption: Protein Sequence Alignment
     chapters:
-    - file: pairwise/matrix.ipynb
+    - file: protein/matrix.ipynb
+    - file: protein/prot_code.ipynb
     
+  - caption: Multiple Sequence Alignments
+    chapters:
+    - file: msa/progressive  
+    - file: msa/msa.ipynb  

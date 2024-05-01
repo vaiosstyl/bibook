@@ -27,3 +27,9 @@ parts:
     chapters:
     - file: msa/progressive  
     - file: msa/msa.ipynb  
+  
+  - caption: Sequence Retrieval
+    chapters:
+    - file: retrieval/blast
+    - file: retrieval/blast_code.ipynb
+    

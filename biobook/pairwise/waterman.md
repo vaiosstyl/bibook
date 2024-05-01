@@ -3,7 +3,7 @@
 
 ## Background
 
-Developed by Temple F. Smith and Michael S. Waterman in 1981, the Smith-Waterman algorithm is a cornerstone in computational biology for performing local sequence alignments. It was designed to identify regions of similarity within long sequences of DNA, RNA, or proteins, allowing for variability in length and composition.
+Developed by Temple F. Smith and Michael S. Waterman in 1981, the Smith-Waterman algorithm is the classical method for forming local sequence alignments{cite}`smith1981identification`. It was designed to identify regions of similarity within long sequences of DNA, RNA, or proteins, allowing for variability in length and composition.
 
 ## Principle
 

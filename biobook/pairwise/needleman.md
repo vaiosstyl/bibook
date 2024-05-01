@@ -2,7 +2,7 @@
 
 ## Background
 
-Developed by Saul B. Needleman and Christian D. Wunsch in 1970, the Needleman-Wunsch algorithm was one of the first computational approaches to sequence alignment. Its introduction marked a significant advancement in bioinformatics, enabling the systematic and automated comparison of biological sequences.
+Developed by Saul B. Needleman and Christian D. Wunsch in 1970 {cite}`needleman1970general`, the Needleman-Wunsch algorithm was one of the first computational approaches to sequence alignment. Its introduction marked a significant advancement in bioinformatics, enabling the systematic and automated comparison of biological sequences.
 
 ## Principle
 
@@ -35,9 +35,7 @@ S_{i,j}=\max
 
 We will walk through these steps more carefully below.
 
-
 ## Process
-
 
 1. **Initialization:** It starts by creating a scoring matrix where one sequence is aligned along the top and the other along the side. The first row and column are filled with gap penalties, increasing progressively to set up the basis for the algorithm.
 
@@ -113,4 +111,19 @@ The resulting matrix is found in {numref}`fig-nw-long`.
 :width: 70%
 
 We follow the alignment backwards from the bottom-right corner to the top-left corner of the matrix, and mark the found optimal path with blue arrows.
+```
+
+## Big-O Notation
+
+Big-O notation is used in computational science for describing how the running time or memory usage of an algorithm scales with a given factor. E.g. if we expect the running time to scale as $g(x)$ we write that the algorithm has complexity $\mathcal{O}(g(x))$. A more formal definition can be found at [wikipedia](https://en.wikipedia.org/wiki/Big_O_notation). 
+
+In the case of Needelman-Wunch we see that the number of calculations needed are proportional to the size of the dynamic programming matrix, which equals the product of the lengths of the sequences, M x N. This results in a time complexity of $ \mathcal{O}(MN) $, indicating that the time to complete the task scales proportionally with the product of the lengths of the two sequences.
+
+In the same way memory usage also scales with $ \mathcal{O}(MN)$, as the scoring matrix used to store intermediate results requires memory proportional to its size.
+
+Big-O notation serves as a quick and effective tool for comparing different algorithms. For example, it allows us to see at a glance how the Needleman-Wunsch algorithm compares to other sequence alignment algorithms in terms of efficiency.
+
+A useful comparison is the complexity of our initial proposition, to enumerate and calculate the scores for all possible alignments of two sequences, an algorithm of complexity $ \mathcal{O}\left( \frac{(M+N)!}{M!*N!}\right) $, which roughly equals to $ \mathcal{O}(2^{2N}/\sqrt{\pi*N})$ if $N>M$ {cite}`lange2002mathematical, eddy2004dynamic`.
+
+```{bibliography}
 ```

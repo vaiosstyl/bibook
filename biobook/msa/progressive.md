@@ -5,7 +5,7 @@ While pairwise alignments enable comparisons between two sequences, many biologi
 
 ### Exponential Time Complexity
 
-In principle one can use dynamic programming to form MSAs. However, a major drawback is its exponential time complexity. For pairwise alignments, DP algorithms like the Needleman-Wunsch or Smith-Waterman algorithms have a time complexity of O(m * n), where m and n are the lengths of the sequences being aligned. However, for MSAs, the time complexity increases exponentially with the number of sequences and their lengths. For example, aligning N sequences each of length L can result in a time complexity of O(L^N), making it impractical for datasets with more than a few sequences.
+In principle one can use dynamic programming to form MSAs. We can archive such systems using the same priciples as for the pairwise alignments, but just expanding the dynamic programming matrix into a tensor of the same dimension as the number of sequences.  However, a major drawback is its exponential time complexity.  Aligning $T$ sequences each of length $N$ can result in a time complexity of $O(N^T)$, making it impractical for datasets with more than a few sequences.
 
 ### Iterative Approaches as a Practical Alternative
 
@@ -24,6 +24,16 @@ The progressive alignment method offers several advantages. It efficiently handl
 In this chapter, we delve into the mechanics of progressive alignment, exploring its implementation and applications in bioinformatics. By understanding this approach, we gain valuable insights into the biological relationships and evolutionary trajectories that shape our world.
 
 ### Progressive Alignment Steps
+
+PThe process builds alignments in a stepwise manner, starting with the most similar sequences and gradually incorporating others. Here's a detailed look at how to create a progressive alignment. Lests assume you start with $T$ sequences, $C=\{A_1, \ldots, A_T\}$.
+
+1. Compute Pairwise Alignments: Initially, calculate all pairwise alignments between each pair of sequences in $C$ using a suitable algorithm such as Needleman-Wunsch or Smith-Waterman. This provides a matrix of scores or distances that indicate how similar or different each pair of sequences is.
+
+2. Use the pairwise distances to identify the two sequences in $C$, $A_i$ and  $A_j$ that are closest (those with the highest similarity score or lowest distance), and form a alignment of those two sequences.  Remove $A_i$ and $A_j$ from $C$. We call the alignment of those two sequences $B$.
+
+3. Add $B$ to $C$. Set the distance from $B$ to each of the other sequences in $C$ to the average of their distance from $A_i$ and $A_j$.
+
+4. If there are more sequences than one in $C$, then go to step 2.
 
 ### Progressive Alignment Steps
 

@@ -1,8 +1,28 @@
-## Profile Hidden Markov Models
+# Profile Hidden Markov Models
 
-### Overview
+## Overview
 
 Profile Hidden Markov Models (HMMs) are statistical models designed to capture the variability and patterns found in multiple sequence alignments (MSAs). They offer a robust way to model conserved regions, sequence motifs, and evolutionary variations, making them an essential tool in bioinformatics for sequence analysis and comparison.
+
+## Profile HMMs as representations of MSAs
+
+A multiple sequence alignment of a homologous family of protein domains reveals patterns of site-specific evolutionary conservation:
+
+- **Conserved Residues:** Certain positions show high conservation, reflecting key functional or structural roles.
+- **Substitution Patterns:** Some positions tolerate substitutions that conserve physiochemical properties like hydrophobicity, charge, or size.
+- **Variable Positions:** Some positions exhibit near-neutral variability.
+- **Insertions and Deletions:** Insertions and deletions are tolerated at some positions more than others.
+
+A profile HMM is is a position-specific scoring model that describes which symbols are likely to be observed and how frequently insertions or deletions occur at each position (column) of a multiple sequence alignment.
+
+- **Probabilistic Basis:** HMMs have a formal probabilistic basis, allowing the use of probability theory to set and interpret the large number of free parameters in a profile, including position-specific gap and insertion parameters.
+- **Automatable Methods:** These methods are mathematically consistent and automatable, enabling the creation of libraries of hundreds of profile HMMs for large-scale genome analysis.
+
+### Applications
+
+One notable database of protein domain models is Pfam . Pfam and the HMMER software suite have been developed in parallel, providing comprehensive resources for protein families based on seed alignments.
+
+
 
 ### Structure of a Profile HMM
 
@@ -34,28 +54,10 @@ Profile HMMs provide a sophisticated way to model and analyze sequence alignment
 
 ### Profile HMM Diagram
 
-```mermaid
-flowchart LR
-    S(Start) --> M1[M1]
-    M1 --> M2[M2]
-    M2 --> M3[M3]
-    M3 --> M4[M4]
-    M4 --> E(End)
- 
-    M1 --> I1[I1]
-    M1 --> D2[D2]
-    
-    M2 --> I2[I2]
-    M2 --> D3[D3]
-    
-    M3 --> I3[I3]
-    M3 --> D4[D4]
-    
-    D2 --> M2
-    D3 --> M3
-    D4 --> M4
+```{figure} ./img/phmm.png
+:name: fig-profileHMM
+:align: left
+:width: 100%
 
-    I1 --> M2
-    I2 --> M3
-    I3 --> M4
+A state diagram of a profile HMM with 4 match states.
 ```

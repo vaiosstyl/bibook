@@ -1,3 +1,7 @@
+# Project specific files
+helpers/xtracttikz/*_tikz_*.*
+notes/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

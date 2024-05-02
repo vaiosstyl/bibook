@@ -1,4 +1,4 @@
-# Welcome to BioBook
+# Bioinformatics for Biotechnology students
 
 ```{tableofcontents}
 ```

@@ -27,6 +27,7 @@ parts:
     chapters:
     - file: msa/progressive  
     - file: msa/msa.ipynb  
+    - file: msa/profileHMM  
   
   - caption: Sequence Retrieval
     chapters:

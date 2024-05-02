@@ -1,6 +1,6 @@
 # Introduction to Sequence Alignments
 
-In the vast realm of bioinformatics, sequence alignments form the cornerstone of genomic and proteomic research. At its core, sequence alignment is the comparison of nucleotide or protein sequences to identify regions of similarity that may reveal functional, structural, or evolutionary relationships. This foundational technique has propelled our understanding of molecular biology, enabling the prediction of gene functions, the elucidation of evolutionary trajectories, and the development of novel therapeutic interventions.
+In bioinformatics, sequence alignments form the cornerstone. At its core, sequence alignment is the comparison of nucleotide or protein sequences to identify regions of similarity that may reveal functional, structural, or evolutionary relationships. This foundational technique has propelled our understanding of molecular biology, enabling the prediction of gene functions, the elucidation of evolutionary trajectories, and the bering principle behind modern sequencing.
 
 Sequence alignments serve as a bridge between raw genetic information and meaningful biological insights. They facilitate the comparison of newly sequenced genes or proteins against well-characterized databases, providing immediate context and understanding. Through these comparisons, researchers can infer the biological role of unknown genes, identify conserved domains crucial for protein function, and predict the evolutionary lineage of species.
 

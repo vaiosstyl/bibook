@@ -39,15 +39,21 @@ K-mers can be used for indexing sequences, making sequence retrieval more effici
 
 ## The BLAST Algorithm
 
-The BLAST algorithm follows these key steps:
+The Basic Local Alignment Search Tool (BLAST) is a heuristic algorithm designed to create local alignments, helping to find the closest homologs of sequences in a database. The algorithm leverages indices of k-tuples from the sequence database, with `k` typically ranging from 3 to 6 for proteins and 6 to 20 for DNA. BLAST follows these key steps:
 
-1. **Word Hits Generation**: The query sequence is broken into k-mers, and these are compared to pre-computed k-mers from the database sequences.
+1. **Word Hits Generation**: The query sequence is divided into k-tuples, which are compared to pre-computed k-tuples from the database sequences.
+  
+1. **Seeding**: The matching k-tuples, known as "seeds," are used as anchor points for the alignment procedure. The list of k-tuples is expanded to include any k-tuples that match with an alignment score above a threshold T.
 
-1. **Seeding**: The match k-mers, known as "seeds", are used as anchor points for the sequence alignment procedure. 
-2. **Extension**: BLAST extends the seeds in both directions, creating larger alignments. This extension continues until the alignment score drops below a threshold, preventing poor alignments from extending.
-3. **Alignment Scoring**: Each extended alignment is scored based on the similarity between the aligned regions, taking into account matches, mismatches, and gaps.
-4. **Statistical Evaluation**: BLAST calculates the statistical significance of each alignment using e-values, which indicate how many alignments of the same quality as the evaluated alignment would be found by chance in a database of a given size.
-6. **Output**: The algorithm then lists all alignments above a threshold score and provides details such as alignment positions, scores, and statistical significance.
+3. **Extension**: BLAST extends these seeds in both directions, creating larger alignments. This extension continues until the alignment score drops below a threshold, preventing poor alignments from extending. These extended matches are known as high-scoring segment pairs (HSPs).
+
+4. **Alignment Scoring**: Each extended alignment is scored based on the similarity between the aligned regions, taking into account matches, mismatches, and gaps.
+
+5. **Statistical Evaluation**: BLAST calculates the statistical significance of each alignment using e-values, indicating how many alignments of the same quality would be found by chance in a database of a given size.
+
+6. **Output**: The algorithm then lists all alignments above a threshold score, providing details such as alignment positions, scores, and statistical significance.
+
+This combined approach gives an overview of BLAST, highlighting its key features and processes.
 
 ## E-Values and Their Meaning
 
@@ -78,3 +84,25 @@ Where:
 - $S$ is the alignment score, calculated from the selected scoring matrix and the alignment of residues. It accounts for the sum of substitution and gap scores for the aligned residues.
 
 The E-value is directly proportional to the search space size (m × n) and inversely proportional to the exponential function of the alignment score (S). Consequently, larger databases provide more opportunities for chance alignments, resulting in higher E-values (indicating weaker statistical significance) for the same level of sequence similarity.
+
+## The FASTA Format
+
+BLAST is using FASTA format as input format for its databases and queries. The FASTA format is a widely adopted standard for representing nucleotide and protein sequences in bioinformatics. Developed in the 1980s for the FASTA sequence alignment software, it has since become a versatile and essential format for storing and sharing sequence data. The FASTA format consists of two key components:
+
+1. **Header Line:** Each sequence begins with a header line, which starts with a greater-than symbol (`>`). The text following this symbol provides a description of the sequence. This description often includes information such as a unique identifier (e.g., accession number), the source organism, and other metadata. For example:
+
+
+1. **Header Line:** Each sequence begins with a header line, which starts with a greater-than symbol (`>`). The text following this symbol provides a description of the sequence. This description often includes information such as a unique identifier (e.g., accession number), the source organism, and other metadata. For example:  
+`>sp|P12345|PROT_HUMAN Human Protein Name [Homo sapiens]`  
+In this example, "sp" indicates the Swiss-Prot database, "P12345" is the accession number, "PROT_HUMAN" is the unique identifier, and additional information follows.
+
+2. **Sequence Lines:** Below the header line, the sequence data is written as plain text. For nucleotide sequences, this consists of a string of the bases A, C, G, and T (or U for RNA). For protein sequences, it consists of a string of the standard 20 amino acid single-letter codes. The sequence can be broken into multiple lines, making it easier to read and process:
+`ATGCGTACGTGACGT  
+CGTGAGCTAGTCAGT`  
+
+These sequence lines represent the data to be analyzed and compared.
+
+### Usage and Applications
+The FASTA format's simplicity and clarity make it ideal for storing and sharing sequence data. It is supported by most bioinformatics tools, including alignment algorithms, database search tools, and genome browsers. Additionally, the format is highly adaptable, allowing for easy conversion to and from other sequence formats.
+
+FASTA files can contain multiple sequences, each represented by its own header and sequence lines, making them an efficient way to store large datasets. They are used in bioinformatics pipelines, providing a way to manage and share sequence information. Note, however, that FASTA is not a well defined format, and there are multiple variant in how both headers and sequence lines should be formated.

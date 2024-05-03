@@ -123,7 +123,7 @@ In the same way memory usage also scales with $ \mathcal{O}(MN)$, as the scoring
 
 Big-O notation serves as a quick and effective tool for comparing different algorithms. For example, it allows us to see at a glance how the Needleman-Wunsch algorithm compares to other sequence alignment algorithms in terms of efficiency.
 
-A useful comparison is the complexity of our initial proposition, to enumerate and calculate the scores for all possible alignments of two sequences, an algorithm of complexity $ \mathcal{O}\left( \frac{(M+N)!}{M!*N!}\right) $, which roughly equals to $ \mathcal{O}(2^{2N}/\sqrt{\pi*N})$ if $N>M$ {cite}`lange2002mathematical, eddy2004dynamic`.
+A useful comparison is the complexity of our initial proposition, to enumerate and calculate the scores for all possible alignments of two sequences. If we asume that $N>M$, the number of alignments where every postion of a sequence is either matched by the other sequence or an indel (i.e. no indel is matched to another indel)  is $N+M \choose M=\frac{(M+N)!}{M!*N!}$. This means that exhausive alignments have a complexity $ \mathcal{O}\left( \frac{(M+N)!}{M!*N!}\right) $, which roughly equals to $ \mathcal{O}(2^{2N}/\sqrt{N})$ {cite}`lange2002mathematical, eddy2004dynamic`.
 
 ```{bibliography}
 ```

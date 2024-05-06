@@ -66,19 +66,18 @@ Here, $i$ and $j$ represent different states in the model, such as match, insert
 ## Calculating Sequence Probability Using Profile HMMs
 
 Before delving into the computational dynamics of the Viterbi algorithm for sequence alignment using Profile Hidden Markov Models (HMMs), we investigate how to calculate the probability of observing a specific sequence along a particular path through the model. 
-#### Sequence and Path Definition
+
+### Sequence and Path Definition
 
 Consider a sequence $X = x_1, x_2, ..., x_L$ and a corresponding path $\pi = \pi_1, \pi_2, ..., \pi_L$ through a Profile HMM, where each $\pi_i$ represents the state (Match, Insertion, or Deletion) at position $i$ in the sequence. Each state in the path emits a sequence character (except for deletion states which are silent), and the transition from one state to the next is governed by the structure of the HMM.
 
-#### Probability Calculation
+### Probability Calculation
 
 The probability of observing the sequence $X$ along the path $\pi$ through the Profile HMM is the product of all relevant emission probabilities and transition probabilities along the path. Mathematically, this is expressed as:
 
-$
-P(X, \pi) = \prod_{i=1}^{L} e_{\pi_i}(x_i) \cdot t_{\pi_{i}, \pi_{i+1}}
-$
+$ P(X, \pi) = \prod_{i=1}^{L} e_{\pi_i}(x_i) \cdot t_{\pi_{i}, \pi_{i+1}} $
 
-Here, $e_{\pi_i}(x_i)$ represents the emission probability of observing symbol $x_i$ from state $\pi_i$, and $t_{\pi_{i}, \pi_{i+1}}$ is the transition probability from state $\pi_i$ to state $\pi_{i+1}$. It's important to note that the emission probability of a deletion state is always 1 since deletions do not emit any symbols.
+Here, $e_{ \pi_i}(x_i) $ represents the emission probability of observing symbol $x_i$ from state $\pi_i$, and $ t_{\pi_{i}, \pi_{i+1}} $ is the transition probability from state $\pi_i$ to state $\pi_{i+1}$. It's important to note that the emission probability of a deletion state is always 1 since deletions do not emit any symbols.
 
 #### Step-by-Step Breakdown
 

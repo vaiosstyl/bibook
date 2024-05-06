@@ -40,9 +40,6 @@ A Profile HMM is structured to mirror the columns of an MSA, with three main sta
 
 3. **Deletion States (D):** Represent positions where sequences may lack a corresponding residue or nucleotide, resulting in a gap in the alignment. Deletion states enable the model to handle varying lengths in sequences.
 
-
-Of course! Here's the text formatted in Markdown:
-
 ### Emission Probabilities
 
 Emission probabilities in a Profile HMM quantify the likelihood of observing a specific amino acid or nucleotide at each position in an alignment. These probabilities are stored within match, insertion states (delete staes are silent and dont emit sequence) and are derived from the frequencies of residues or nucleotides observed in the Multiple Sequence Alignment (MSA) used to construct the model. Mathematically, the emission probability $e_i(x)$ for observing residue $x$ at position $i$ in the alignment is calculated as:

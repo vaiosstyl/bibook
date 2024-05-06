@@ -69,7 +69,7 @@ Before delving into the computational dynamics of the Viterbi algorithm for sequ
 
 ### Sequence and Path Definition
 
-Consider a sequence $X = x_1, x_2, ..., x_L$ and a corresponding path $\pi = \pi_1, \pi_2, ..., \pi_L$ through a Profile HMM, where each $\pi_i$ represents the state (Match, Insertion, or Deletion) at position $i$ in the sequence. Each state in the path emits a sequence character (except for deletion states which are silent), and the transition from one state to the next is governed by the structure of the HMM.
+Consider a sequence $X = x_1, x_2, ..., x_L$ and a corresponding path $\pi = \pi_1, \pi_2, ..., \pi_L$ through a Profile HMM, where each $\pi_i$ represents the state (Match, Insertion, or Deletion) at position $i$ in the sequence. Each state in the path emits a sequence character (deletion states, which are silent, emits a token $x_i=\delta$ with a probability $e_{\pi_i}(\delta)=1$), and the transition from one state to the next is governed by the structure of the HMM.
 
 ### Probability Calculation
 
@@ -103,14 +103,13 @@ Given a Profile HMM and a query sequence, the Viterbi algorithm identifies the m
 1. **Initialization:**
    - Initialize the first column of the Viterbi matrix with the emission probabilities for the first residue of the sequence in each match state.
    - The formula for initialization:
-     $ V(1, M_i) = e_1(x) $
+     $ V(0, 0) = 1.0 $
 
 2. **Recursion:**
    - Iterate through each residue in the sequence, updating the Viterbi matrix based on transition and emission probabilities.
    - Update each cell in the Viterbi matrix using the following formula:
-     $ V(i, M_j) = \max_k [V(i-1, M_k) \cdot t_{kj} \cdot e_i(x)] $  
-     $ V(i, I_j) = \max_k [V(i-1, M_k) \cdot t_{kj} \cdot e_i(x)] $  
-     $ V(i, D_j) = \max_k [V(i-1, D_k) \cdot t_{kj}] $
+     $ V(i, j) = \max_{k \le j} [V(i-1, k) \cdot t_{kj}] \cdot e_j(x_i), $ when $j$ is a match or insert state. 
+     $ V(i, j) = \max_{k<j} [V(i, k) \cdot t_{kj}], $  when $j$ is a delete state.
 
 3. **Termination:**
    - Once the entire sequence has been processed, identify the highest probability in the last column of the Viterbi matrix. This represents the likelihood of the most probable path through the model.

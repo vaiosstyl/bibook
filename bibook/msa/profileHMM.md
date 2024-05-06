@@ -20,6 +20,13 @@ A profile HMM is is a position-specific scoring model that describes which symbo
 
 ### Applications
 
+Profile HMMs offer several key applications in bioinformatics:
+
+1. **Sequence Alignment:** By comparing a new sequence to a profile HMM, we can identify which regions of the sequence correspond to conserved regions in the MSA, helping to align the new sequence with known homologs.
+
+2. **Domain Detection:** Profile HMMs can identify and characterize functional domains in proteins by matching sequence segments to domain profiles.
+
+3. **Sequence Classification:** By comparing a sequence to various profile HMMs, we can classify it into families or groups, aiding in the identification of evolutionary relationships.
 One notable database of protein domain models is [Pfam](http://pfam.xfam.org/). Pfam and the HMMER software suite have been developed in parallel, providing comprehensive resources for protein families based on seed alignments.
 
 ### Structure of a Profile HMM
@@ -56,26 +63,11 @@ $t_{ij} = \frac{{\text{{Count of transitions from state }} i \text{{ to state }}
 
 Here, $i$ and $j$ represent different states in the model, such as match, insertion, or deletion states. The count of transitions from state $i$ to state $j$ is divided by the total count of transitions originating from state $i$ to normalize the probability. Transition probabilities reflect the probabilities of insertions, deletions, and matches within the MSA. Higher transition probabilities between match states indicate regions of sequence conservation, where consecutive residues are more likely to align without gaps. Conversely, higher transition probabilities from match states to insertion or deletion states suggest regions with more variability, where insertions or deletions are common. By capturing these probabilities, Profile HMMs effectively model the indel patterns observed in the alignment.
 
-### Applications
-
-Profile HMMs offer several key applications in bioinformatics:
-
-1. **Sequence Alignment:** By comparing a new sequence to a profile HMM, we can identify which regions of the sequence correspond to conserved regions in the MSA, helping to align the new sequence with known homologs.
-
-2. **Domain Detection:** Profile HMMs can identify and characterize functional domains in proteins by matching sequence segments to domain profiles.
-
-3. **Sequence Classification:** By comparing a sequence to various profile HMMs, we can classify it into families or groups, aiding in the identification of evolutionary relationships.
-
-### Conclusion
-
-Profile HMMs provide a sophisticated way to model and analyze sequence alignments, capturing both conserved regions and sequence variability. They extend the capabilities of MSAs, allowing for deeper insights into sequence structures, functions, and relationships.
-
-
 ## Sequence Alignment with Profile HMMs using Viterbi Algorithm
 
 The Viterbi algorithm, adapted for Profile Hidden Markov Models (Profile HMMs), efficiently aligns sequences to the model. Here's a concise breakdown of the process:
 
-#### Overview:
+### Overview:
 
 Given a Profile HMM and a query sequence, the Viterbi algorithm identifies the most probable alignment between the sequence and the model. This alignment accounts for matches, insertions, and deletions.
 
@@ -101,8 +93,3 @@ Given a Profile HMM and a query sequence, the Viterbi algorithm identifies the m
 
 5. **Alignment:**
    - Translate the identified path into an alignment between the query sequence and the Profile HMM, where match states represent aligned residues, insertion states represent gaps in the query sequence, and deletion states represent gaps in the model.
-
-#### Conclusion:
-
-The Viterbi algorithm provides a powerful method for aligning sequences to Profile HMMs, facilitating the identification of significant sequence similarities and aiding in tasks such as protein family classification and motif discovery.
-

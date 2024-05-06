@@ -63,9 +63,37 @@ $t_{ij} = \frac{{\text{{Count of transitions from state }} i \text{{ to state }}
 
 Here, $i$ and $j$ represent different states in the model, such as match, insertion, or deletion states. The count of transitions from state $i$ to state $j$ is divided by the total count of transitions originating from state $i$ to normalize the probability. Transition probabilities reflect the probabilities of insertions, deletions, and matches within the MSA. Higher transition probabilities between match states indicate regions of sequence conservation, where consecutive residues are more likely to align without gaps. Conversely, higher transition probabilities from match states to insertion or deletion states suggest regions with more variability, where insertions or deletions are common. By capturing these probabilities, Profile HMMs effectively model the indel patterns observed in the alignment.
 
+## Calculating Sequence Probability Using Profile HMMs
+
+Before delving into the computational dynamics of the Viterbi algorithm for sequence alignment using Profile Hidden Markov Models (HMMs), we investigate how to calculate the probability of observing a specific sequence along a particular path through the model. 
+#### Sequence and Path Definition
+
+Consider a sequence $X = x_1, x_2, ..., x_L$ and a corresponding path $\pi = \pi_1, \pi_2, ..., \pi_L$ through a Profile HMM, where each $\pi_i$ represents the state (Match, Insertion, or Deletion) at position $i$ in the sequence. Each state in the path emits a sequence character (except for deletion states which are silent), and the transition from one state to the next is governed by the structure of the HMM.
+
+#### Probability Calculation
+
+The probability of observing the sequence $X$ along the path $\pi$ through the Profile HMM is the product of all relevant emission probabilities and transition probabilities along the path. Mathematically, this is expressed as:
+
+$
+P(X, \pi) = \prod_{i=1}^{L} e_{\pi_i}(x_i) \cdot t_{\pi_{i}, \pi_{i+1}}
+$
+
+Here, $e_{\pi_i}(x_i)$ represents the emission probability of observing symbol $x_i$ from state $\pi_i$, and $t_{\pi_{i}, \pi_{i+1}}$ is the transition probability from state $\pi_i$ to state $\pi_{i+1}$. It's important to note that the emission probability of a deletion state is always 1 since deletions do not emit any symbols.
+
+#### Step-by-Step Breakdown
+
+1. **Initialization:** Start from the beginning of the sequence and the corresponding initial state in the path. The initial state typically has no preceding state, so the initial transition probability may be a special case, often set based on the model's parameters.
+
+2. **Iteration:** For each position $i$ from 1 to $L$ in the sequence and path:
+   - Compute the emission probability $e_{\pi_i}(x_i)$ if $\pi_i$ is a match or insertion state. For deletion states, this value is 1.
+   - Compute the transition probability $t_{\pi_{i-1}, \pi_i}$ from the previous state $\pi_{i-1}$ to the current state $\pi_i$.
+
+3. **Multiplication:** Multiply all computed probabilities (emission and transition) to get the total probability of observing the sequence $X$ given the path $\pi$.
+
 ## Sequence Alignment with Profile HMMs using Viterbi Algorithm
 
-The Viterbi algorithm, adapted for Profile Hidden Markov Models (Profile HMMs), efficiently aligns sequences to the model. Here's a concise breakdown of the process:
+However, normally we don't have a path available that likely generated a certain sequence. However, it turns out that we can use dynamic programming to find an optimal path.
+This is done using the Viterbi algorithm, adapted for Profile Hidden Markov Models (Profile HMMs). Here's a concise breakdown of the process:
 
 ### Overview:
 

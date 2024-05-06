@@ -126,4 +126,5 @@ Big-O notation serves as a quick and effective tool for comparing different algo
 A useful comparison is the complexity of our initial proposition, to enumerate and calculate the scores for all possible alignments of two sequences. If we asume that $N>M$, the number of alignments where every postion of a sequence is either matched by the other sequence or an indel (i.e. no indel is matched to another indel)  is ${N+M \choose M} = \frac{(M+N)!}{M!*N!}$. This means that exhausive alignments have a complexity $ \mathcal{O}\left( \frac{(M+N)!}{M!*N!}\right) $, which roughly equals to $ \mathcal{O}(2^{2N}/\sqrt{N})$ {cite}`lange2002mathematical, eddy2004dynamic`.
 
 ```{bibliography}
+:filter: docname in docnames
 ```

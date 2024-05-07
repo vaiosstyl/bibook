@@ -111,10 +111,10 @@ FASTA files can contain multiple sequences, each represented by its own header a
 
 BLAST comes in a couple of different versions, depending on its usage. Here are the main versions of BLAST:
 
-- **BLASTn (Nucleotide BLAST):** Compares nucleotide sequences against a database or another sequence to identify evolutionary relationships. Useful in phylogenetics studies. [15]
+- **BLASTn (Nucleotide BLAST):** Compares nucleotide sequences against a database or another sequence to identify evolutionary relationships. Useful in phylogenetics studies. 
 
-- **tBLASTn:** Searches for proteins in untranslated DNA sequences. Takes a protein sequence and compares it to all potential translations of a nucleotide sequence. Useful for finding protein-coding regions in ESTs and HTGs. [16]
+- **tBLASTn:** Searches for proteins in untranslated DNA sequences. Takes a protein sequence and compares it to all potential translations of a nucleotide sequence. Useful for finding protein-coding regions in ESTs and HTGs.
 
-- **BLASTx:** Compares a nucleotide query, translated into six possible protein sequences, against a protein database. This tool is essential when DNA sequence reading frames are uncertain or contain errors that could impact protein coding. It provides combined statistics across all frames for new DNA analyses. [17]
+- **BLASTx:** Compares a nucleotide query, translated into six possible protein sequences, against a protein database. This tool is essential when DNA sequence reading frames are uncertain or contain errors that could impact protein coding. It provides combined statistics across all frames for new DNA analyses.
 
-- **BLASTp (Protein BLAST):** Used for comparing protein sequences against a database (e.g., nr database). It helps in identifying proteins by finding similar sequences in known protein databases. [18]
+- **BLASTp (Protein BLAST):** Used for comparing protein sequences against a database (e.g., nr database). It helps in identifying proteins by finding similar sequences in known protein databases. 

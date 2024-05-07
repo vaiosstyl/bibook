@@ -106,3 +106,15 @@ These sequence lines represent the data to be analyzed and compared.
 The FASTA format's simplicity and clarity make it ideal for storing and sharing sequence data. It is supported by most bioinformatics tools, including alignment algorithms, database search tools, and genome browsers. Additionally, the format is highly adaptable, allowing for easy conversion to and from other sequence formats.
 
 FASTA files can contain multiple sequences, each represented by its own header and sequence lines, making them an efficient way to store large datasets. They are used in bioinformatics pipelines, providing a way to manage and share sequence information. Note, however, that FASTA is not a well defined format, and there are multiple variant in how both headers and sequence lines should be formated.
+
+## Types of BLAST
+
+BLAST comes in a couple of different versions, depending on its usage. Here are the main versions of BLAST:
+
+- **BLASTn (Nucleotide BLAST):** Compares nucleotide sequences against a database or another sequence to identify evolutionary relationships. Useful in phylogenetics studies. [15]
+
+- **tBLASTn:** Searches for proteins in untranslated DNA sequences. Takes a protein sequence and compares it to all potential translations of a nucleotide sequence. Useful for finding protein-coding regions in ESTs and HTGs. [16]
+
+- **BLASTx:** Compares a nucleotide query, translated into six possible protein sequences, against a protein database. This tool is essential when DNA sequence reading frames are uncertain or contain errors that could impact protein coding. It provides combined statistics across all frames for new DNA analyses. [17]
+
+- **BLASTp (Protein BLAST):** Used for comparing protein sequences against a database (e.g., nr database). It helps in identifying proteins by finding similar sequences in known protein databases. [18]

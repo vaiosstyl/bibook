@@ -8,6 +8,6 @@ all: build-book
 imgs:
 	@$(MAKE) -C bibook/msa/img 
 
-build-book: imgs select-conda-env
+build-book: imgs
 	$(CONDA_ACTIVATE) jb; jupyter-book build bibook/
 

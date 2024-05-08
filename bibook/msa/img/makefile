@@ -14,6 +14,7 @@ convert_png:
 	for file in $(BASENAME).tex; do \
 		pdflatex "$$file"; \
 		pdftoppm -png -r 300 "$${file%.tex}.pdf" > "$${file%.tex}.png"; \
+		rm "$${file%.tex}.pdf" "$${file%.tex}.aux" "$${file%.tex}.log"; \
 	done
 
 # Clean up auxiliary files

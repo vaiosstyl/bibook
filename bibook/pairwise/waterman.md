@@ -79,3 +79,7 @@ Given the filled in matrix, we can now track the optimal path from the bottom ri
 
 We follow the alignment backwards from the matrix element with the largest value, $\max_{i,j} S_{ij}$, value corner to the first encountered cell with a value of zero, and mark the found optimal path with blue arrows.
 ```
+
+```{bibliography}
+:filter: docname in docnames
+```

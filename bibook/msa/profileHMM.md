@@ -20,11 +20,24 @@ A profile HMM is is a position-specific scoring model that describes which symbo
 
 ### Applications
 
-One notable database of protein domain models is Pfam . Pfam and the HMMER software suite have been developed in parallel, providing comprehensive resources for protein families based on seed alignments.
+Profile HMMs offer several key applications in bioinformatics:
 
+1. **Sequence Alignment:** By comparing a new sequence to a profile HMM, we can identify which regions of the sequence correspond to conserved regions in the MSA, helping to align the new sequence with known homologs.
 
+2. **Domain Detection:** Profile HMMs can identify and characterize functional domains in proteins by matching sequence segments to domain profiles.
+
+3. **Sequence Classification:** By comparing a sequence to various profile HMMs, we can classify it into families or groups, aiding in the identification of evolutionary relationships.
+One notable database of protein domain models is [Pfam](http://pfam.xfam.org/). Pfam and the HMMER software suite have been developed in parallel, providing comprehensive resources for protein families based on seed alignments.
 
 ### Structure of a Profile HMM
+
+```{figure} ./img/phmm.png
+:name: fig-profileHMM
+:align: left
+:width: 100%
+
+A state diagram of a profile HMM with 4 match states.
+```
 
 A Profile HMM is structured to mirror the columns of an MSA, with three main states for each column:
 
@@ -34,30 +47,75 @@ A Profile HMM is structured to mirror the columns of an MSA, with three main sta
 
 3. **Deletion States (D):** Represent positions where sequences may lack a corresponding residue or nucleotide, resulting in a gap in the alignment. Deletion states enable the model to handle varying lengths in sequences.
 
+### Emission Probabilities
+
+Emission probabilities in a Profile HMM quantify the likelihood of observing a specific amino acid or nucleotide at each position in an alignment. These probabilities are stored within match, insertion states (delete staes are silent and dont emit sequence) and are derived from the frequencies of residues or nucleotides observed in the Multiple Sequence Alignment (MSA) used to construct the model. Mathematically, the emission probability $e_i(x)$ for observing residue $x$ at position $i$ in the alignment is calculated as:
+
+$e_i(x) = \frac{{\text{{Count of residue }} x \text{{ at position }} i}}{{\text{{Total count of residues at position }} i}}$.
+
+Here, $i$ represents the position in the alignment, and $x$ represents a specific amino acid or nucleotide. The count of residue $x$ at position $i$ is divided by the total count of residues at position $i$ to normalize the probability. Emission probabilities reflect the amino acid composition of each column in the MSA. Uneavenly distributed emission probabilities indicate positions that are more conserved, where a specific amino acid or nucleotide is frequently observed across sequences in the alignment. Conversely, evenly distributed emission probabilities suggest positions with more variability, where multiple residues or nucleotides may be present.
+
 ### Transition Probabilities
 
-In addition to these states, Profile HMMs include transition probabilities between states, reflecting the likelihood of moving from one state to another. For example, a transition might occur from a match state to an insertion state, or from a match state directly to another match state. These transition probabilities reflect the patterns observed in the MSA and help the model capture sequence variability.
+Transition probabilities in a Profile HMM govern the likelihood of transitioning between different states within the model. These probabilities capture the patterns of insertions, deletions, and matches observed in the MSA. Mathematically, the transition probability $t_{ij}$ from state $i$ to state $j$ is calculated as:
 
-### Applications
+$t_{ij} = \frac{{\text{{Count of transitions from state }} i \text{{ to state }} j}}{{\text{{Total count of transitions from state }} i}}$
 
-Profile HMMs offer several key applications in bioinformatics:
+Here, $i$ and $j$ represent different states in the model, such as match, insertion, or deletion states. The count of transitions from state $i$ to state $j$ is divided by the total count of transitions originating from state $i$ to normalize the probability. Transition probabilities reflect the probabilities of insertions, deletions, and matches within the MSA. Higher transition probabilities between match states indicate regions of sequence conservation, where consecutive residues are more likely to align without gaps. Conversely, higher transition probabilities from match states to insertion or deletion states suggest regions with more variability, where insertions or deletions are common. By capturing these probabilities, Profile HMMs effectively model the indel patterns observed in the alignment.
 
-1. **Sequence Alignment:** By comparing a new sequence to a profile HMM, we can identify which regions of the sequence correspond to conserved regions in the MSA, helping to align the new sequence with known homologs.
+## Calculating Sequence Probability Using Profile HMMs
 
-2. **Domain Detection:** Profile HMMs can identify and characterize functional domains in proteins by matching sequence segments to domain profiles.
+Before delving into the computational dynamics of the Viterbi algorithm for sequence alignment using Profile Hidden Markov Models (HMMs), we investigate how to calculate the probability of observing a specific sequence along a particular path through the model. 
 
-3. **Sequence Classification:** By comparing a sequence to various profile HMMs, we can classify it into families or groups, aiding in the identification of evolutionary relationships.
+### Sequence and Path Definition
 
-### Conclusion
+Consider a sequence $X = x_1, x_2, ..., x_L$ and a corresponding path $\pi = \pi_1, \pi_2, ..., \pi_L$ through a Profile HMM, where each $\pi_i$ represents the state (Match, Insertion, or Deletion) at position $i$ in the sequence. Each state in the path emits a sequence character (deletion states, which are silent, emits a token $x_i=\delta$ with a probability $e_{\pi_i}(\delta)=1$), and the transition from one state to the next is governed by the structure of the HMM.
 
-Profile HMMs provide a sophisticated way to model and analyze sequence alignments, capturing both conserved regions and sequence variability. They extend the capabilities of MSAs, allowing for deeper insights into sequence structures, functions, and relationships.
+### Probability Calculation
 
-### Profile HMM Diagram
+The probability of observing the sequence $X$ along the path $\pi$ through the Profile HMM is the product of all relevant emission probabilities and transition probabilities along the path. Mathematically, this is expressed as:
 
-```{figure} ./img/phmm.png
-:name: fig-profileHMM
-:align: left
-:width: 100%
+$ P(X, \pi) = \prod_{i=1}^{L} e_{\pi_i}(x_i) \cdot t_{\pi_{i}, \pi_{i+1}} $
 
-A state diagram of a profile HMM with 4 match states.
-```
+Here, $e_{ \pi_i}(x_i) $ represents the emission probability of observing symbol $x_i$ from state $\pi_i$, and $ t_{\pi_{i}, \pi_{i+1}} $ is the transition probability from state $\pi_i$ to state $\pi_{i+1}$. It's important to note that the emission probability of a deletion state is always 1 since deletions do not emit any symbols.
+
+#### Step-by-Step Breakdown
+
+1. **Initialization:** Start from the beginning of the sequence and the corresponding initial state in the path. The initial state typically has no preceding state, so the initial transition probability may be a special case, often set based on the model's parameters.
+
+2. **Iteration:** For each position $i$ from 1 to $L$ in the sequence and path:
+   - Compute the emission probability $e_{\pi_i}(x_i)$ if $\pi_i$ is a match or insertion state. For deletion states, this value is 1.
+   - Compute the transition probability $t_{\pi_{i-1}, \pi_i}$ from the previous state $\pi_{i-1}$ to the current state $\pi_i$.
+
+3. **Multiplication:** Multiply all computed probabilities (emission and transition) to get the total probability of observing the sequence $X$ given the path $\pi$.
+
+## Sequence Alignment with Profile HMMs using Viterbi Algorithm
+
+However, normally we don't have a path available that likely generated a certain sequence. However, it turns out that we can use dynamic programming to find an optimal path.
+This is done using the Viterbi algorithm, adapted for Profile Hidden Markov Models (Profile HMMs). Here's a concise breakdown of the process:
+
+### Overview:
+
+Given a Profile HMM and a query sequence, the Viterbi algorithm identifies the most probable alignment between the sequence and the model. This alignment accounts for matches, insertions, and deletions.
+
+#### Steps:
+
+1. **Initialization:**
+   - Initialize the first column of the Viterbi matrix with the emission probabilities for the first residue of the sequence in each match state.
+   - The formula for initialization:
+     $ V(0, 0) = 1.0 $
+
+2. **Recursion:**
+   - Iterate through each residue in the sequence, updating the Viterbi matrix based on transition and emission probabilities.
+   - Update each cell in the Viterbi matrix using the following formula:
+     $ V(i, j) = \max_{k \le j} [V(i-1, k) \cdot t_{kj}] \cdot e_j(x_i), $ when $j$ is a match or insert state. 
+     $ V(i, j) = \max_{k<j} [V(i, k) \cdot t_{kj}], $  when $j$ is a delete state.
+
+3. **Termination:**
+   - Once the entire sequence has been processed, identify the highest probability in the last column of the Viterbi matrix. This represents the likelihood of the most probable path through the model.
+
+4. **Backtracking:**
+   - Trace back through the Viterbi matrix, starting from the cell with the highest probability in the last column. Record the path through the model that corresponds to this maximum probability.
+
+5. **Alignment:**
+   - Translate the identified path into an alignment between the query sequence and the Profile HMM, where match states represent aligned residues, insertion states represent gaps in the query sequence, and deletion states represent gaps in the model.

@@ -12,17 +12,10 @@ BLAST was designed to address a fundamental challenge in bioinformatics: how to 
 
 BLAST's success and widespread adoption stem from its balance of speed and sensitivity, making it an essential tool for biological research. Its development was also supported by a novel stochastic model created by Samuel Karlin and Stephen Altschul, forming the statistical foundation for the tool.
 
-### Input
+## K-mer indexing
 
-BLAST takes in a query sequence, either in FASTA or GenBank format, along with a target database and optional parameters such as a scoring matrix.
 
-### Output
-
-BLAST provides results in various formats, including HTML, plain text, and XML. The results include a graphical representation of hits, a table with scoring data, and individual alignments between the query and matched sequences. The table format is particularly useful, summarizing information about each hit.
-
-The Basic Local Alignment Search Tool (BLAST) is a widely used algorithm for searching and retrieving sequences from biological databases. It performs efficient searches by identifying regions of similarity between a query sequence and database sequences, making it an essential tool in bioinformatics. This chapter explores the fundamental concepts behind BLAST and its key components.
-
-```{note} What is a k-mer?
+### What are k-mers?
 
 Before we describe the details of BLAST we need to describe the concept of k-mers. A k-mer is a contiguous substring of length k derived from a larger sequence:
 
@@ -35,7 +28,32 @@ K-mers can be used for indexing sequences, making sequence retrieval more effici
 - **Hash Table Creation**: A hash table or other data structure can store k-mers as keys, mapping them to sequence locations.
 - **Fast Lookups**: By indexing k-mers from database sequences, BLAST can quickly look up similar k-mers from the query sequence, avoiding the need for a full pairwise alignment.
 - **Word Hits**: K-mer matches between the query and database sequences, termed "word hits," serve as initial points of comparison for BLAST.
+
+```{admonition} Dividing "APEPTIDE" into 3-mers
+
+The process of dividing a sequence into k-mers involves taking every possible contiguous subsequence of length k from the given sequence. Here's how it looks for the 3-mers of "APEPTIDE":
+
+- **APE**PTIDE
+- A**PEP**TIDE
+- AP**EPT**IDE
+- APE**PTI**DE
+- APEP**TID**E
+- APEPT**IDE**
+
+This results in the following 3-mers:
+- APE
+- PEP
+- EPT
+- PTI
+- TID
+- IDE
 ```
+
+### Indexing
+
+Before BLAST can efficently search a database, it is critical that one index the sequences. Here's how BLAST indexes sequences:
+BLAST creates a lookup table where each entry corresponds to a k-mer (typically 11 for nucleotides and 3-6 for proteins). For each k-mer in the database sequences, 
+the algorithm stores its position within the sequence.
 
 ## The BLAST Algorithm
 
@@ -72,18 +90,30 @@ The e-values in BLAST searches provide a direct indication of alignment quality:
 
 The E-value (expect value) is a statistical measure used in BLAST to assess the significance of an alignment between a query sequence and database sequences. It reflects the expected number of alignments that would occur by chance in a given database search. The E-value is calculated based on the alignment score $S$, the search space size $m × n$, and parameters derived from the scoring system and database composition, such as the Karlin-Altschul parameters ($K$ and $λ$). The formula for the E-value is:
 
-$E-value = Kmne^{-\lambdaS} $
+$E = Kmne^{-\lambda S} $
 
 Where:
 
 - $m$ is the length of the query sequence.
 - $n$ is the length of the database, which is the sum of the lengths of all the sequences in the database.
-- $K$ and $λ$ are the Karlin-Altschul parameters. They can be estimated from large sets of random sequence alignments:
-  - $λ$ normalizes the alignment score.
+- $K$ and $\lambda$ are the Karlin-Altschul parameters. They can be estimated from large sets of random sequence alignments:
+  - $\lambda$ normalizes the alignment score.
   - $K$ scales the E-value based on the database and sequence lengths.
 - $S$ is the alignment score, calculated from the selected scoring matrix and the alignment of residues. It accounts for the sum of substitution and gap scores for the aligned residues.
 
 The E-value is directly proportional to the search space size (m × n) and inversely proportional to the exponential function of the alignment score (S). Consequently, larger databases provide more opportunities for chance alignments, resulting in higher E-values (indicating weaker statistical significance) for the same level of sequence similarity.
+
+## Types of BLAST
+
+BLAST comes in a couple of different versions, depending on its usage. Here are the main versions of BLAST:
+
+- **BLASTn (Nucleotide BLAST):** Compares nucleotide sequences against a database or another sequence to identify evolutionary relationships. Useful in phylogenetics studies. 
+
+- **tBLASTn:** Searches for proteins in untranslated DNA sequences. Takes a protein sequence and compares it to all potential translations of a nucleotide sequence. Useful for finding protein-coding regions in ESTs and HTGs.
+
+- **BLASTx:** Compares a nucleotide query, translated into six possible protein sequences, against a protein database. This tool is essential when DNA sequence reading frames are uncertain or contain errors that could impact protein coding. It provides combined statistics across all frames for new DNA analyses.
+
+- **BLASTp (Protein BLAST):** Used for comparing protein sequences against a database (e.g., nr database). It helps in identifying proteins by finding similar sequences in known protein databases. 
 
 ## The FASTA Format
 
@@ -103,6 +133,8 @@ CGTGAGCTAGTCAGT`
 These sequence lines represent the data to be analyzed and compared.
 
 ### Usage and Applications
+
 The FASTA format's simplicity and clarity make it ideal for storing and sharing sequence data. It is supported by most bioinformatics tools, including alignment algorithms, database search tools, and genome browsers. Additionally, the format is highly adaptable, allowing for easy conversion to and from other sequence formats.
 
 FASTA files can contain multiple sequences, each represented by its own header and sequence lines, making them an efficient way to store large datasets. They are used in bioinformatics pipelines, providing a way to manage and share sequence information. Note, however, that FASTA is not a well defined format, and there are multiple variant in how both headers and sequence lines should be formated.
+

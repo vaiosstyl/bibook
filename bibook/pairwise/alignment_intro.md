@@ -105,21 +105,48 @@ Use the following scoring scheme:
 
 **Questions:**
 - What is the total alignment score for this alignment?
-````
 
-```{solution} ex-alignscore
-:label: solution-ex-alignscore
-:class: dropdown
-
+```{dropdown} **Reveal Answer**
 Solution to [](#ex-alignscore)
 To calculate the alignment score:
 
 - Matches: G-A, A-A, T-T, C-C → 4 matches × +1 = +4
 - Mismatches: G-C, T-G → 2 mismatches × -1 = -2
-- Gaps: \_ → 1 gap × -2 = -2
+- Gaps: - → 1 gap × -2 = -2
 
-Total alignment score = 4 - 2 - 2 = 0
+Total alignment score = 4 - 2 - 2 = **0**
 ```
+````
+
+````{exercise} Another Alignment Score Calculation for Given Alignment
+:label: ex-alignscore2
+
+Given the following alignment:
+
+```
+Sequence 1: GATTACA
+Sequence 2: GAT-GCA
+```
+
+Use the following scoring scheme:
+- Match: +1
+- Mismatch: -1
+- Gap penalty: -3
+
+**Question:**
+- What is the total alignment score for this alignment with the specified gap penalty?
+
+```{dropdown} **Reveal Answer**
+
+To calculate the alignment score:
+
+- Matches: G-G, A-A, T-T, C-C, A-A → 5 matches × +1 = +5
+- Mismatches: T-G → 1 mismatch × -1 = -1
+- Gaps: - → 1 gap × -3 = -3
+
+Total alignment score = 5 - 1 - 3 = **1**
+```
+````
 
 ## Alignment Type
 

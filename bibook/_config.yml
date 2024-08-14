@@ -47,6 +47,7 @@ repository:
 sphinx:
   extra_extensions:
     - sphinx_subfigure
+    - sphinx_exercise
 #  config:
 #    html_theme_options:
 #      navigation_with_keys: false

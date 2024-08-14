@@ -1,6 +1,6 @@
 # Introduction to Sequence Alignments
 
-In bioinformatics, sequence alignments form the cornerstone. At its core, sequence alignment is the comparison of nucleotide or protein sequences to identify regions of similarity that may reveal functional, structural, or evolutionary relationships. This foundational technique has propelled our understanding of molecular biology, enabling the prediction of gene functions, the elucidation of evolutionary trajectories, and the bering principle behind modern sequencing.
+Sequence alignments form the cornerstone of all bioinformatics. It is just a slight stretch to claim that bioinformatics is the science of sequence alignments. Sequence alignment is the comparison of nucleotide or protein sequences to identify regions of similarity that may reveal functional, structural, or evolutionary relationships. This foundational technique has propelled our understanding of molecular biology, enabling the prediction of gene functions, the elucidation of evolutionary trajectories, and the bering principle behind modern sequencing.
 
 Sequence alignments serve as a bridge between raw genetic information and meaningful biological insights. They facilitate the comparison of newly sequenced genes or proteins against well-characterized databases, providing immediate context and understanding. Through these comparisons, researchers can infer the biological role of unknown genes, identify conserved domains crucial for protein function, and predict the evolutionary lineage of species.
 
@@ -86,6 +86,40 @@ A-T
 Thus, the total score of the alignment `ACT` with `A-T` is calculated as, +2 -1 +2 = 3
 ````
 
+### Excercises
+
+````{exercise} Alignment Score Calculation for Given Alignment
+:label: ex-alignscore
+
+Given the following alignment:
+
+```
+Sequence 1: GATTACA
+Sequence 2: GCATG-C
+```
+
+Use the following scoring scheme:
+- Match: +1
+- Mismatch: -1
+- Gap penalty: -2
+
+**Questions:**
+- What is the total alignment score for this alignment?
+````
+
+```{solution} ex-alignscore
+:label: solution-ex-alignscore
+:class: dropdown
+
+Solution to [](#ex-alignscore)
+To calculate the alignment score:
+
+- Matches: G-A, A-A, T-T, C-C → 4 matches × +1 = +4
+- Mismatches: G-C, T-G → 2 mismatches × -1 = -2
+- Gaps: \_ → 1 gap × -2 = -2
+
+Total alignment score = 4 - 2 - 2 = 0
+```
 
 ## Alignment Type
 

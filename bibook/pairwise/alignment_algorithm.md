@@ -53,4 +53,30 @@ The path of Alignment 1 is given a red color, Alignment 2 a green color, and Ali
 
 In summary, the matrix representation of alignments and the traceback process are not merely computational techniques; they are integral to understanding the relationships between biological sequences. By breaking down the alignment process into a series of quantifiable steps, matrices allow us to systematically explore the vast space of alignment possibilities, leading us to the optimal alignment that best reflects the evolutionary or functional relationship between the sequences involved.
 
+### Excercises
+
+````{exercise} Matrix Representations of Alignments
+-------
+:label: ex-matrixrep
+-------
+
+* Which alignment does the following path represent?
+
+```{figure} ./img/matrix_representation_exer.png
+---
+name: fig-matrix-representation-exer
+scale: 50 %
+alt: Exercise on Matrix representation of alignments
+---
+
+```
+
+
+```{dropdown} **Reveal Answer**
+
+GATTA-GA   
+G-CTACTA
+
+```
+````
 

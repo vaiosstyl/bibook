@@ -24,7 +24,7 @@ Sequence alignments are invaluable in the study of biological sciences for sever
 
 Understanding sequence alignments is crucial for students entering the field of biotechnology, as it lays the foundation for more advanced studies in modern sequencing and proteomics and in that capacity being fundamental for genetics, molecular biology, and evolutionary studies. It is just a sligh exageration to say that alignments are part of every asspect of modern biology.
 
-## Illustration of a Sequence Alignment
+### Illustration of a Sequence Alignment
 
 To illustrate the concept of sequence alignment, consider the following example involving two DNA sequences:
 
@@ -41,7 +41,7 @@ In this example, the alignment demonstrates a few key concepts:
 
 - **Insertion and Deletion (Indels):** These occur when a nucleotide (or amino acid) is present in one sequence but not the other, resulting in gaps in the alignment. An insertion in sequence 2 (represented by the gap in sequence 1 after 'A') and a deletion in sequence 1 (indicated by the gap in sequence 2 after 'T') illustrate this concept.
 
-# What is needed to systematicaly construct a pairwise alignment?
+## What is needed to systematicaly construct a pairwise alignment?
 
 To systematicaly construct a pairwise alignment we need three things.
 
@@ -49,8 +49,7 @@ To systematicaly construct a pairwise alignment we need three things.
 - An alignment type, i.e. what type of alignment is to be constructed. 
 - An alignment algorithm, i.e. how do we optimise the score of an alignment to form the desired alignment type
 
-
-## Scoring function
+### Scoring function
 
 A scoring function, $d(x,y)$, giving the score of a column of any letter $x$ and $y$.  The letters could be DNA or RNA bases of amino acids, for know lets think about them as DNA bases. A typical scoring function could be:
 

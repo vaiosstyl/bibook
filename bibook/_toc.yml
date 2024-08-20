@@ -5,11 +5,13 @@ format: jb-book
 root: intro
 parts:
   - caption: Introduction to Alignments
+    numbered: True
     chapters:
     - file: pairwise/alignment_intro
     - file: pairwise/alignment_algorithm
 
   - caption: Algorithms for Pairwise Alignments
+    numbered: True
     chapters:
     - file: pairwise/needleman
     - file: pairwise/nw_code.ipynb
@@ -19,11 +21,13 @@ parts:
     - file: pairwise/sg_code.ipynb
 
   - caption: Protein Sequence Alignment
+    numbered: True
     chapters:
     - file: protein/matrix.ipynb
     - file: protein/prot_code.ipynb
     
   - caption: Multiple Sequence Alignments
+    numbered: True
     chapters:
     - file: msa/progressive  
     - file: msa/msa.ipynb  
@@ -31,6 +35,7 @@ parts:
     - file: msa/viterbi.ipynb  
   
   - caption: Sequence Retrieval
+    numbered: True
     chapters:
     - file: retrieval/blast
     - file: retrieval/blast_code.ipynb

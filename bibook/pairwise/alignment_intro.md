@@ -167,7 +167,7 @@ Global alignment is ideal for comparing closely related sequences to identify sm
 
 #### Definition
 
-Local alignment identifies the highest scoring alignment for any substring of the sequences being compared. Unlike global alignment, it focuses on regions of high similarity without forcing the alignment outside of these regions.
+Local alignment identifies the highest-scoring alignment for any substring of the compared sequences. Unlike global alignment, it focuses on regions of high similarity without forcing the alignment outside of these regions.
 
 #### Use Case
 
@@ -177,7 +177,7 @@ Local alignments are best when the sequences under comparison are of different l
 
 #### Definition
 
-Semi-global alignment, also known as glocal alignment, seeks an optimal alignment for one sequence within the other, allowing for overhangs at either end of the shorter sequence without penalty. This method combines aspects of both global and local alignments, ensuring alignment across the full length of one sequence while allowing extensions in the other.
+Semi-global alignment, also known as glocal alignment, seeks an optimal alignment for one sequence within the other, allowing for overhangs at either end of the shorter sequence without penalty. This method combines aspects of both global and local alignments, ensuring alignment across the entire length of one sequence while allowing extensions in the other.
 
 #### Use Case
 
@@ -187,15 +187,15 @@ Each alignment approach serves different purposes and is suited to particular sc
 
 ## Alignment Algorithm
 
-Given the scoring function, and alignment type, we have a definition on what we want to archive, i.e. there is a definition of opimality. Now we come to the question of *how* we obtain such optimality.
+Given the scoring function and alignment type, we have a definition of what we want to archive, i.e., there is a definition of optimality. Now we come to the question of *how* we obtain such optimality.
 
-### Exhausive searches
+### Exhaustive searches
 
-Lets first consider why this is not as straight forward as you might first think. Given that computers are fast, why dont we just walk through all possible alignments that can be formed by two sequences and then select whatever alignment that is optimal?
+Let's first consider why this is not as straightforward as you might first think. Given that computers are fast, why don't we just walk through all possible alignments that can be formed by two sequences and then select whatever alignment is optimal?
 
 Combinatorial explosion refers to the exponential growth in the number of possibilities that need to be considered as the size of the problem increases. In the context of sequence alignment, this means assessing every possible way in which two sequences can be aligned by considering every possible insertion, deletion, and substitution.
 
-For two sequences the number of possible alignments  grows exponentially with the lengths of these sequences. This is due to the fact that each position in the first sequence can be matched with any position in the second sequence or aligned with a gap, and vice versa. If you consider aligning a sequence of just 10 amino acids against another of the same length, the number of potential alignments, considering all possible gaps and matches, is astronomically high. Aligning sequences of 100 characters each could potentially result in evaluating more possibilities than there are atoms in the observable universe. The situation becomes untenably complex as the sequence lengths increase to typical biological lengths of hundreds or thousands of residues.
+For two sequences, the number of possible alignments grows exponentially with the length of these sequences. This is due to the fact that each position in the first sequence can be matched with any position in the second sequence or aligned with a gap, and vice versa. If you consider aligning a sequence of just 10 amino acids against another of the same length, the number of potential alignments, considering all possible gaps and matches, is astronomically high. Aligning sequences of 100 characters each could potentially result in evaluating more possibilities than there are atoms in the observable universe. The situation becomes untenably complex as the sequence lengths increase to typical biological lengths of hundreds or thousands of residues.
 
 In conclusion, while exhaustive search methods might conceptually offer a way to ensure the discovery of the optimal alignment, their practical application is limited by the sheer number of combinations they generate. This makes them an impractical choice in the field of bioinformatics, where efficiency and speed are often as critical as accuracy.
 

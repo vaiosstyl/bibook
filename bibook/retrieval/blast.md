@@ -2,7 +2,7 @@
 
 ## Introduction
 
-BLAST (Basic Local Alignment Search Tool) is a powerful algorithm designed for comparing biological sequences, such as protein amino acid sequences or DNA/RNA nucleotide sequences. Developed by Eugene Myers, Stephen Altschul, Warren Gish, David J. Lipman, and Webb Miller at the National Institutes of Health (NIH) in 1990, BLAST has become one of the most widely used tools in bioinformatics.
+BLAST (Basic Local Alignment Search Tool) is a powerful algorithm designed for comparing biological sequences, such as protein amino acid sequences or DNA/RNA nucleotide sequences {cite}`altschul1990basic`. Developed in 1990, BLAST has become one of the most widely used tools in bioinformatics, cited more than hundred thousand times.
 
 The primary purpose of BLAST is to compare a query sequence against a database of sequences, identifying those with a similarity above a certain threshold. This enables researchers to efficiently find sequences that resemble the query, facilitating further biological research.
 
@@ -10,7 +10,7 @@ The primary purpose of BLAST is to compare a query sequence against a database o
 
 BLAST was designed to address a fundamental challenge in bioinformatics: how to efficiently search large genomic databases. Its heuristic algorithm offers a much faster alternative to traditional methods like Smith-Waterman and Needleman-Wunsch, which focus on optimal alignment but are computationally intensive.
 
-BLAST's success and widespread adoption stem from its balance of speed and sensitivity, making it an essential tool for biological research. Its development was also supported by a novel stochastic model created by Samuel Karlin and Stephen Altschul, forming the statistical foundation for the tool.
+BLAST's success and widespread adoption stem from its balance of speed and sensitivity, making it an essential tool for biological research. Its development was also supported by a novel stochastic model {cite}`karlin1990methods`, the so called Karlin-Altschul statistics, forming the statistical foundation for the tool.
 
 ## K-mer indexing
 
@@ -138,3 +138,8 @@ The FASTA format's simplicity and clarity make it ideal for storing and sharing 
 
 FASTA files can contain multiple sequences, each represented by its own header and sequence lines, making them an efficient way to store large datasets. They are used in bioinformatics pipelines, providing a way to manage and share sequence information. Note, however, that FASTA is not a well defined format, and there are multiple variant in how both headers and sequence lines should be formated.
 
+## References
+
+```{bibliography}
+:filter: docname in docnames
+```

@@ -113,6 +113,58 @@ The resulting matrix is found in {numref}`fig-nw-long`.
 We follow the alignment backwards from the bottom-right corner to the top-left corner of the matrix, and mark the found optimal path with blue arrows.
 ```
 
+### Exercise
+
+````{exercise} Needleman-Wunch Alignment 1
+:label: ex-nwexe1
+
+Calculate the Needleman Wunch Alignment of th following two sequences:
+
+```
+GATTA  
+GCTAC
+```
+
+Use the following scoring scheme:
+- Match: +2
+- Mismatch: -1
+- Gap penalty: -3
+
+```{dropdown} **Reveal Answer**
+```{figure} ./img/nw_exe1.png
+---
+scale: 50%
+align: left
+---
+```
+````
+
+````{exercise} Needleman-Wunch Alignment 2
+:label: ex-nwexe2
+
+Calculate the Needleman Wunch Alignment of th following two sequences:
+
+```
+GCAGCTA   
+GCTA
+```
+
+Use the following scoring scheme:
+- Match: +2
+- Mismatch: -1
+- Gap penalty: -3
+
+```{dropdown} **Reveal Answer**
+```{figure} ./img/nw_exe2.png
+---
+scale: 50%
+align: left
+---
+```
+````
+
+
+
 ## Big-O Notation
 
 Big-O notation is used in computational science for describing how the running time or memory usage of an algorithm scales with a given factor. E.g. if we expect the running time to scale as $g(x)$ we write that the algorithm has complexity $\mathcal{O}(g(x))$. A more formal definition can be found at [wikipedia](https://en.wikipedia.org/wiki/Big_O_notation). 

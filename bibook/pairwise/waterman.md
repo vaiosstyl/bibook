@@ -80,6 +80,57 @@ Given the filled in matrix, we can now track the optimal path from the bottom ri
 We follow the alignment backwards from the matrix element with the largest value, $\max_{i,j} S_{ij}$, value corner to the first encountered cell with a value of zero, and mark the found optimal path with blue arrows.
 ```
 
+### Exercises 
+
+````{exercise} Smith-Waterman Alignment 1
+:label: ex-swexe1
+
+Calculate the Smith-Waterman Alignment of the following two sequences:
+
+```
+GCGATTA   
+GCTTAC
+```
+
+Use the following scoring scheme:
+- Match: +3
+- Mismatch: -1
+- Gap penalty: -2
+
+```{dropdown} **Reveal Answer**
+```{figure} ./img/sw_exe1.png
+---
+scale: 50%
+align: left
+---
+```
+````
+
+````{exercise} Smith-Waterman Alignment 2
+:label: ex-swexe2
+
+Calculate the Smith-Waterman Alignment of the following two sequences:
+
+```
+CTATCTCGCTATCCA   
+CTACGCTATTTCA
+```
+
+Use the following scoring scheme:
+- Match: +3
+- Mismatch: -1
+- Gap penalty: -2
+
+```{dropdown} **Reveal Answer**
+```{figure} ./img/sw_exe2.png
+---
+scale: 50%
+align: left
+---
+```
+````
+
+
 ```{bibliography}
 :filter: docname in docnames
 ```

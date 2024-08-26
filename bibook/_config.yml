@@ -9,6 +9,8 @@ logo: bibook.webp
 # See https://jupyterbook.org/content/execute.html
 execute:
   execute_notebooks: auto
+  exclude_patterns: 
+    - '*/*_latex.ipynb'
 
 # Define the name of the latex output file for PDF builds
 latex:

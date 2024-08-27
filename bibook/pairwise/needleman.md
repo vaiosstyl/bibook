@@ -58,17 +58,17 @@ Despite its computational intensity, especially for long sequences, the Needlema
 Here is an example alignment of the sequences `GAC` and `ACG` using Needleman-Wunsch, when we have a scoring function,
 $d(x,y)= \begin{cases}1 & \textrm{if} x=y\\ -1 & \textrm{otherwise } \end{cases}$.
 
-We start by filling in the borders of the matrix as shown in {numref}`fig-nw-short-1`.
+We start by filling in the borders of the matrix using the Equation {eq}`nw-init`, as shown in {numref}`fig-nw-short-1`.
 
 ```{figure} ./img/nw_short_1.png
 :name: fig-nw-short-1
 :align: left
 :width: 50%
 
-Initialization of the gap penalty matrix for the Needleman-Wunsch algorithm, using using equation {eq}`nw-init`.
+Initialization of the gap penalty matrix for the Needleman-Wunsch algorithm, using using Equation {eq}`nw-init`.
 ```
 
-We then recusively fill in the other elements of the matrix in a row wise manner, as shown in {numref}`fig-nw-recursion`.
+We then recusively fill in the other elements of the matrix in a row wise manner using Equation {eq}`nw-recursion`, as shown in {numref}`fig-nw-recursion`.
 
 :::{subfigure} ABC|DEF|GHI
     :subcaptions: below
@@ -86,7 +86,7 @@ We then recusively fill in the other elements of the matrix in a row wise manner
 ![max(0+1,-1+-1,-1+-1)=1](./img/nw_short_9.png)
 ![max(-1+-1,-2+-1,1+-1)=0](./img/nw_short_10.png)
 
-Filling in the matrix. We fill in the elements recursively, in a row-wise manner. Each cell's value is evaluated using equation {eq}`nw-recursion`. The values of each recursion is spelled out under each subfigure. We store trackers of which step we used to reach a certain cell, indicated by red arrows. Note that for some cells there are multiple optimal steps, i.e. paths that have the same score.
+Filling in the matrix. We fill in the elements recursively, in a row-wise manner. Each cell's value is evaluated using Equation {eq}`nw-recursion`. The values of each recursion is spelled out under each subfigure. We store trackers of which step we used to reach a certain cell, indicated by red arrows. Note that for some cells there are multiple optimal steps, i.e. paths that have the same score.
 :::  
 
 Given the filled in matrix, we can now track the optimal path from the bottom right element of the matrix, following the arrows back to the top-left element, as shown in {numref}`fig-nw-bt`.

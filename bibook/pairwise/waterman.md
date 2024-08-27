@@ -50,24 +50,24 @@ S_{i,j}=\max
 Here is an example alignment of the sequences `GAC` and `ACG` using Smith-Waterman, when we have a scoring function,
 $d(x,y)= \begin{cases}1 & \textrm{if} x=y\\ -1 & \textrm{otherwise } \end{cases}$.
 
-We start by filling in the borders of the matrix as shown in {numref}`fig-sw-init`.
+We start by filling in the borders of the matrix using Equation {eq}`sw-init`, as shown in {numref}`fig-sw-init`.
 
 ```{figure} ./img/sw_short_init.png
 :name: fig-sw-init
 :align: left
 :width: 50%
 
-Initialization of the dynamic programming matrix, using using equation {eq}`nw-init`. For Smith-Waterman this equates to setting the elements of the first row and column to 0.
+Initialization of the dynamic programming matrix, using using Equation {eq}`sw-init`. For Smith-Waterman this equates to setting the elements of the first row and column to 0.
 ```
 
-We then recusively fill in the other elements of the matrix in a row wise manner, as shown in {numref}`fig-sw-fill`.
+We then recusively fill in the other elements of the matrix in a row wise manner using Equation {eq}`sw-recursion`, as shown in {numref}`fig-sw-fill`.
 
 ```{figure} ./img/sw_short_fill.png
 :name: fig-sw-fill
 :align: left
 :width: 50%
 
-Filling in the matrix. We fill in the elements recursively, in a row-wise manner. Each cell's value is evaluated using equation {eq}`sw-recursion`. The values of each recursion is spelled out under each subfigure. We store trackers of which step we used to reach a certain cell, indicated by red arrows. Note that for some cells there are multiple optimal steps, i.e. paths that have the same score.
+Filling in the matrix. We fill in the elements recursively, in a row-wise manner. Each cell's value is evaluated using Equation {eq}`sw-recursion`. The values of each recursion is spelled out under each subfigure. We store trackers of which step we used to reach a certain cell, indicated by red arrows. Note that for some cells there are multiple optimal steps, i.e. paths that have the same score.
 ```
 
 Given the filled in matrix, we can now track the optimal path from the bottom right element of the matrix, following the arrows back to the top-left element, as shown in {numref}`fig-sw-bt`.

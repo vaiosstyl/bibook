@@ -126,9 +126,9 @@ GCTAC
 ```
 
 Use the following scoring scheme:
-- Match: +2
+- Match: +3
 - Mismatch: -1
-- Gap penalty: -3
+- Gap penalty: -2
 
 ```{dropdown} **Reveal Answer**
 ```{figure} ./img/nw_exe1.png
@@ -150,9 +150,9 @@ GCTA
 ```
 
 Use the following scoring scheme:
-- Match: +2
+- Match: +3
 - Mismatch: -1
-- Gap penalty: -3
+- Gap penalty: -2
 
 ```{dropdown} **Reveal Answer**
 ```{figure} ./img/nw_exe2.png

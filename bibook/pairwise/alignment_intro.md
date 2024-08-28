@@ -140,7 +140,7 @@ Use the following scoring scheme:
 To calculate the alignment score:
 
 - Matches: G-G, A-A, T-T, C-C, A-A → 5 matches × +1 = +5
-- Mismatches: T-G → 1 mismatch × -1 = -1
+- Mismatches: A-G → 1 mismatch × -1 = -1
 - Gaps: - → 1 gap × -3 = -3
 
 Total alignment score = 5 - 1 - 3 = **1**

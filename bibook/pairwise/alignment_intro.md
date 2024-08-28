@@ -12,7 +12,7 @@ Sequence alignments are indispensable tools that not only advance fundamental sc
 
 ### Definition of an Alignment
 
-A sequence alignment is a method of arranging sequences of DNA, RNA, or proteins to identify regions of similarity that may be a consequence of functional, structural, or evolutionary relationships between the sequences. By comparing these sequences, alignments can reveal patterns that are not evident when analyzing single sequences in isolation.
+Sequence alignment is a method of arranging sequences of DNA, RNA, or proteins to identify regions of similarity that may be a consequence of functional, structural, or evolutionary relationships between the sequences. By comparing these sequences, alignments can reveal patterns that are not evident when analyzing single sequences in isolation.
 
 ### Importance of Sequence Alignments
 
@@ -22,7 +22,7 @@ Sequence alignments are invaluable in the study of biological sciences for sever
 
 - **Quantification of Sequence Similarity:** Through alignments, it is possible to quantitatively measure how similar two or more sequences are. This similarity can be indicative of how closely related the sequences are in an evolutionary context, providing insights into the phylogenetic relationships between different organisms.
 
-Understanding sequence alignments is crucial for students entering the field of biotechnology, as it lays the foundation for more advanced studies in modern sequencing and proteomics and in that capacity being fundamental for genetics, molecular biology, and evolutionary studies. It is just a sligh exaggeration to say that alignments are part of every asspect of modern biology.
+Understanding sequence alignments is crucial for students entering the field of biotechnology, as it lays the foundation for more advanced studies in modern sequencing and proteomics and in that capacity being fundamental for genetics, molecular biology, and evolutionary studies. It is just a sligh exaggeration to say that alignments are part of every aspect of modern biology.
 
 ### Illustration of a Sequence Alignment
 
@@ -41,9 +41,9 @@ In this example, the alignment demonstrates a few key concepts:
 
 - **Insertion and Deletion (Indels):** These occur when a nucleotide (or amino acid) is present in one sequence but not the other, resulting in gaps in the alignment. An insertion in sequence 2 (represented by the gap in sequence 1 after 'A') and a deletion in sequence 1 (indicated by the gap in sequence 2 after 'T') illustrate this concept.
 
-## What is needed to systematicaly construct a pairwise alignment?
+## What is needed to systematically construct a pairwise alignment?
 
-To systematicaly construct a pairwise alignment we need three things.
+To systematically construct a pairwise alignment we need three things.
 
 - A scoring function, i.e. how is each position in the alignment scored.
 - An alignment type, i.e. what type of alignment is to be constructed. 

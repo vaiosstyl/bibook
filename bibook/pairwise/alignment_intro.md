@@ -85,7 +85,7 @@ A-T
 Thus, the total score of the alignment `ACT` with `A-T` is calculated as, +2 -1 +2 = 3
 ````
 
-### Excercises
+### Exercises
 
 ````{exercise} Alignment Score Calculation for Given Alignment
 :label: ex-alignscore
@@ -93,13 +93,13 @@ Thus, the total score of the alignment `ACT` with `A-T` is calculated as, +2 -1 
 Given the following alignment:
 
 ```
-Sequence 1: GATTACA
-Sequence 2: GCATG-C
+Sequence 1: GATTATC
+Sequence 2: GCTTG-C
 ```
 
 Use the following scoring scheme:
-- Match: +1
-- Mismatch: -1
+- Match: +2
+- Mismatch: 0
 - Gap penalty: -2
 
 **Questions:**
@@ -109,11 +109,11 @@ Use the following scoring scheme:
 Solution to [](#ex-alignscore)
 To calculate the alignment score:
 
-- Matches: G-A, A-A, T-T, C-C → 4 matches × +1 = +4
-- Mismatches: G-C, T-G → 2 mismatches × -1 = -2
+- Matches: G-G, T-T, T-T, C-C → 4 matches × +2 = +8
+- Mismatches: A-C, A-G → 2 mismatches × 0 = 0
 - Gaps: - → 1 gap × -2 = -2
 
-Total alignment score = 4 - 2 - 2 = **0**
+Total alignment score = 8 - 0 - 2 = **6**
 ```
 ````
 

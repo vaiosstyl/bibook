@@ -22,7 +22,7 @@ Sequence alignments are invaluable in the study of biological sciences for sever
 
 - **Quantification of Sequence Similarity:** Through alignments, it is possible to quantitatively measure how similar two or more sequences are. This similarity can be indicative of how closely related the sequences are in an evolutionary context, providing insights into the phylogenetic relationships between different organisms.
 
-Understanding sequence alignments is crucial for students entering the field of biotechnology, as it lays the foundation for more advanced studies in modern sequencing and proteomics and in that capacity being fundamental for genetics, molecular biology, and evolutionary studies. It is just a sligh exageration to say that alignments are part of every asspect of modern biology.
+Understanding sequence alignments is crucial for students entering the field of biotechnology, as it lays the foundation for more advanced studies in modern sequencing and proteomics and in that capacity being fundamental for genetics, molecular biology, and evolutionary studies. It is just a sligh exaggeration to say that alignments are part of every asspect of modern biology.
 
 ### Illustration of a Sequence Alignment
 

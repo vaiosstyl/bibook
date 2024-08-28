@@ -163,11 +163,9 @@ align: left
 ```
 ````
 
-
-
 ## Big-O Notation
 
-Big-O notation is used in computational science for describing how the running time or memory usage of an algorithm scales with a given factor. E.g. if we expect the running time to scale as $g(x)$ we write that the algorithm has complexity $\mathcal{O}(g(x))$. A more formal definition can be found at [wikipedia](https://en.wikipedia.org/wiki/Big_O_notation). 
+Big-O notation is used in computational science for describing how the running time or memory usage of an algorithm scales with a given factor. E.g. if we expect the running time to scale as $g(x)$ we write that the algorithm has complexity $\mathcal{O}(g(x))$. A more formal definition can be found at [wikipedia](https://en.wikipedia.org/wiki/Big_O_notation).
 
 In the case of Needelman-Wunch we see that the number of calculations needed are proportional to the size of the dynamic programming matrix, which equals the product of the lengths of the sequences, M x N. This results in a time complexity of $ \mathcal{O}(MN) $, indicating that the time to complete the task scales proportionally with the product of the lengths of the two sequences.
 
@@ -175,7 +173,7 @@ In the same way memory usage also scales with $ \mathcal{O}(MN)$, as the scoring
 
 Big-O notation serves as a quick and effective tool for comparing different algorithms. For example, it allows us to see at a glance how the Needleman-Wunsch algorithm compares to other sequence alignment algorithms in terms of efficiency.
 
-A useful comparison is the complexity of our initial proposition, to enumerate and calculate the scores for all possible alignments of two sequences. If we asume that $N>M$, the number of alignments where every postion of a sequence is either matched by the other sequence or an indel (i.e. no indel is matched to another indel)  is ${N+M \choose M} = \frac{(M+N)!}{M!*N!}$. This means that exhausive alignments have a complexity $ \mathcal{O}\left( \frac{(M+N)!}{M!*N!}\right) $, which roughly equals to $ \mathcal{O}(2^{2N}/\sqrt{N})$ {cite}`lange2002mathematical, eddy2004dynamic`.
+A useful comparison is the complexity of our initial proposition, to enumerate and calculate the scores for all possible alignments of two sequences. This can be done by calculating the number of alignments with $k$ matches/mis-matches between the two sequences which is ${M \choose k}{N \choose k}$. If we asume that $N>M$ and sum this for all possible values of $k$, we get $\sum_{k=0}^M{M \choose k}{N \choose k}=\sum_{k=0}^M{M \choose M-k}{N \choose k}={N+M \choose M}=\frac{(M+N)!}{M!*N!}$ number of different aligments. This can be shown to follow $ \mathcal{O}(2^{2N}/\sqrt{N})$ {cite}`lange2002mathematical, eddy2004dynamic`.
 
 ```{bibliography}
 :filter: docname in docnames

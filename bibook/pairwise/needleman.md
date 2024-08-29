@@ -68,7 +68,7 @@ We start by filling in the borders of the matrix using the Equation {eq}`nw-init
 Initialization of the gap penalty matrix for the Needleman-Wunsch algorithm, using using Equation {eq}`nw-init`.
 ```
 
-We then recusively fill in the other elements of the matrix in a row wise manner using Equation {eq}`nw-recursion`, as shown in {numref}`fig-nw-recursion`.
+We then recursively fill in the other elements of the matrix in a row wise manner using Equation {eq}`nw-recursion`, as shown in {numref}`fig-nw-recursion`.
 
 :::{subfigure} ABC|DEF|GHI
     :subcaptions: below

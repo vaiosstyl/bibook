@@ -115,7 +115,7 @@ We follow the alignment backwards from the bottom-right corner to the top-left c
 
 ### Exercise
 
-````{exercise} Needleman-Wunch Alignment 1
+````{exercise} Needleman-Wunsch Alignment 1
 :label: ex-nwexe1
 
 Calculate the Needleman Wunch Alignment of th following two sequences:
@@ -139,10 +139,10 @@ align: left
 ```
 ````
 
-````{exercise} Needleman-Wunch Alignment 2
+````{exercise} Needleman-Wunsch Alignment 2
 :label: ex-nwexe2
 
-Calculate the Needleman Wunch Alignment of th following two sequences:
+Calculate the Needleman-Wunsch Alignment of th following two sequences:
 
 ```
 GCAGCTA   
@@ -167,7 +167,7 @@ align: left
 
 Big-O notation is used in computational science for describing how the running time or memory usage of an algorithm scales with a given factor. E.g. if we expect the running time to scale as $g(x)$ we write that the algorithm has complexity $\mathcal{O}(g(x))$. A more formal definition can be found at [wikipedia](https://en.wikipedia.org/wiki/Big_O_notation).
 
-In the case of Needelman-Wunch we see that the number of calculations needed are proportional to the size of the dynamic programming matrix, which equals the product of the lengths of the sequences, M x N. This results in a time complexity of $ \mathcal{O}(MN) $, indicating that the time to complete the task scales proportionally with the product of the lengths of the two sequences.
+In the case of Needleman-Wunsch we see that the number of calculations needed are proportional to the size of the dynamic programming matrix, which equals the product of the lengths of the sequences, M x N. This results in a time complexity of $ \mathcal{O}(MN) $, indicating that the time to complete the task scales proportionally with the product of the lengths of the two sequences.
 
 In the same way memory usage also scales with $ \mathcal{O}(MN)$, as the scoring matrix used to store intermediate results requires memory proportional to its size.
 

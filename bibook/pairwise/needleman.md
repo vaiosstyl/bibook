@@ -115,7 +115,7 @@ We follow the alignment backwards from the bottom-right corner to the top-left c
 
 ### Exercise
 
-````{exercise} Needleman-Wunch Alignment 1
+````{exercise} Needleman-Wunsch Alignment 1
 :label: ex-nwexe1
 
 Calculate the Needleman Wunch Alignment of th following two sequences:
@@ -139,10 +139,10 @@ align: left
 ```
 ````
 
-````{exercise} Needleman-Wunch Alignment 2
+````{exercise} Needleman-Wunsch Alignment 2
 :label: ex-nwexe2
 
-Calculate the Needleman Wunch Alignment of th following two sequences:
+Calculate the Needleman-Wunsch Alignment of th following two sequences:
 
 ```
 GCAGCTA   

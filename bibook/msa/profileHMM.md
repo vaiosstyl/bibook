@@ -49,11 +49,11 @@ A Profile HMM is structured to mirror the columns of an MSA, with three main sta
 
 ### Emission Probabilities
 
-Emission probabilities in a Profile HMM quantify the likelihood of observing a specific amino acid or nucleotide at each position in an alignment. These probabilities are stored within match, insertion states (delete staes are silent and dont emit sequence) and are derived from the frequencies of residues or nucleotides observed in the Multiple Sequence Alignment (MSA) used to construct the model. Mathematically, the emission probability $e_i(x)$ for observing residue $x$ at position $i$ in the alignment is calculated as:
+Emission probabilities in a Profile HMM quantify the likelihood of observing a specific amino acid or nucleotide at each position in an alignment. These probabilities are stored within match, insertion states (delete states are silent and dont emit sequence) and are derived from the frequencies of residues or nucleotides observed in the Multiple Sequence Alignment (MSA) used to construct the model. Mathematically, the emission probability $e_i(x)$ for observing residue $x$ at position $i$ in the alignment is calculated as:
 
 $e_i(x) = \frac{{\text{{Count of residue }} x \text{{ at position }} i}}{{\text{{Total count of residues at position }} i}}$.
 
-Here, $i$ represents the position in the alignment, and $x$ represents a specific amino acid or nucleotide. The count of residue $x$ at position $i$ is divided by the total count of residues at position $i$ to normalize the probability. Emission probabilities reflect the amino acid composition of each column in the MSA. Uneavenly distributed emission probabilities indicate positions that are more conserved, where a specific amino acid or nucleotide is frequently observed across sequences in the alignment. Conversely, evenly distributed emission probabilities suggest positions with more variability, where multiple residues or nucleotides may be present.
+Here, $i$ represents the position in the alignment, and $x$ represents a specific amino acid or nucleotide. The count of residue $x$ at position $i$ is divided by the total count of residues at position $i$ to normalize the probability. Emission probabilities reflect the amino acid composition of each column in the MSA. Unevenly distributed emission probabilities indicate positions that are more conserved, where a specific amino acid or nucleotide is frequently observed across sequences in the alignment. Conversely, evenly distributed emission probabilities suggest positions with more variability, where multiple residues or nucleotides may be present.
 
 ### Transition Probabilities
 

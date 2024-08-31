@@ -42,7 +42,7 @@ alt: Matrix representation of three alignments
 ---
 Matrix representation of three full length alignments of `ACGTACT` and `ACTACGT`, as well as one partial alignment of the same sequences.
 
-The path of Alignment 1 is given a red color, Alignment 2 a green color, and Alignment 3 a blue color. We also included a partial (local) alignment, Alignment 4 in orange.
+The path of Alignment 1 is given in red, Alignment 2 in green, and Alignment 3 in blue. We also included a partial (local) alignment, Alignment 4 in orange.
 
 | Alignment 1 (red) | Alignment 2 (green) | Alignment 3 (blue) | Alignment 4 (orange)
 | :---------- | :---------- | :---------- | :---------- |

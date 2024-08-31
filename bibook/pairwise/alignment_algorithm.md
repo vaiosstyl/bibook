@@ -40,7 +40,7 @@ name: fig-matrix-representation
 scale: 50 %
 alt: Matrix representation of three alignments
 ---
-Matrix representation of three alignments of `ACGTACT` and `ACTACGT`.
+Matrix representation of three full length alignments of `ACGTACT` and `ACTACGT`, as well as one partial alignment of the same sequences.
 
 The path of Alignment 1 is given a red color, Alignment 2 a green color, and Alignment 3 a blue color. We also included a partial (local) alignment, Alignment 4 in orange.
 

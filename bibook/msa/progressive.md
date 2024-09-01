@@ -1,12 +1,12 @@
 # Multiple Sequence Alignments
 
-## Intoduction 
+## Introduction 
 
 While pairwise alignments enable comparisons between two sequences, many biological analyses require a more comprehensive approach: the alignment of multiple sequences simultaneously. Multiple sequence alignments (MSAs) offer a holistic view of sequence similarities and differences, illuminating functional and evolutionary relationships across diverse genomes and proteomes.
 
 ### Exponential Time Complexity
 
-In principle, one can use dynamic programming to form MSAs. We can archive such systems using the same ideas as for the pairwise alignments, but just expanding the dynamic programming matrix into a tensor of the same dimension as the number of sequences.  However, a major drawback is its exponential time complexity.  Aligning $T$ sequences each of length $N$ can result in a time complexity of $O(N^T)$, making it impractical for datasets with more than a few sequences.
+In principle, one can use dynamic programming to form MSAs. We can achieve such systems using the same ideas as for the pairwise alignments, but just expanding the dynamic programming matrix into a tensor of the same dimension as the number of sequences.  However, a major drawback is its exponential time complexity.  Aligning $T$ sequences each of length $N$ can result in a time complexity of $O(N^T)$, making it impractical for datasets with more than a few sequences.
 
 ### Iterative Approaches as a Practical Alternative
 
@@ -69,7 +69,7 @@ Seq3 and Seq4.
 IAM-PEPPE-D
 IAMAPEPPERD
 ```
-These sequence were the most similar among remaining ones.
+These sequences were the most similar among remaining ones.
 :::
 
 :::{grid-item-card}

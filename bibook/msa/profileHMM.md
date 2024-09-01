@@ -13,7 +13,7 @@ A multiple sequence alignment of a homologous family of protein domains reveals 
 - **Variable Positions:** Some positions exhibit near-neutral variability.
 - **Insertions and Deletions:** Insertions and deletions are tolerated at some positions more than others.
 
-A profile HMM is is a position-specific scoring model that describes which symbols are likely to be observed and how frequently insertions or deletions occur at each position (column) of a multiple sequence alignment.
+A profile HMM is a position-specific scoring model that describes which symbols are likely to be observed and how frequently insertions or deletions occur at each position (column) of a multiple sequence alignment.
 
 - **Probabilistic Basis:** HMMs have a formal probabilistic basis, allowing the use of probability theory to set and interpret the large number of free parameters in a profile, including position-specific gap and insertion parameters.
 - **Automatable Methods:** These methods are mathematically consistent and automatable, enabling the creation of libraries of hundreds of profile HMMs for large-scale genome analysis.
@@ -49,7 +49,7 @@ A Profile HMM is structured to mirror the columns of an MSA, with three main sta
 
 ### Emission Probabilities
 
-Emission probabilities in a Profile HMM quantify the likelihood of observing a specific amino acid or nucleotide at each position in an alignment. These probabilities are stored within match, insertion states (delete states are silent and dont emit sequence) and are derived from the frequencies of residues or nucleotides observed in the Multiple Sequence Alignment (MSA) used to construct the model. Mathematically, the emission probability $e_i(x)$ for observing residue $x$ at position $i$ in the alignment is calculated as:
+Emission probabilities in a Profile HMM quantify the likelihood of observing a specific amino acid or nucleotide at each position in an alignment. These probabilities are stored within match and insertion states (delete states are silent and don't emit sequences) and are derived from the frequencies of residues or nucleotides observed in the Multiple Sequence Alignment (MSA) used to construct the model. Mathematically, the emission probability $e_i(x)$ for observing residue $x$ at position $i$ in the alignment is calculated as:
 
 $e_i(x) = \frac{{\text{{Count of residue }} x \text{{ at position }} i}}{{\text{{Total count of residues at position }} i}}$.
 
@@ -91,7 +91,7 @@ Here, $e_{ \pi_i}(x_i) $ represents the emission probability of observing symbol
 
 ## Sequence Alignment with Profile HMMs using Viterbi Algorithm
 
-However, normally we don't have a path available that likely generated a certain sequence. However, it turns out that we can use dynamic programming to find an optimal path.
+However, we normally don't have a path available that likely generated a certain sequence. However, it turns out that we can use dynamic programming to find an optimal path.
 This is done using the Viterbi algorithm, adapted for Profile Hidden Markov Models (Profile HMMs). Here's a concise breakdown of the process:
 
 ### Overview:
